@@ -27,7 +27,6 @@ public class MusicPlayer implements Runnable {
         musicFiles = new ArrayList<String>();
 
         
-        int a = 5;
         
 //        for (String file: files)    
         
@@ -41,7 +40,7 @@ public class MusicPlayer implements Runnable {
         clip.open(audioInputStream);
 //        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);       
 //        gainControl.setValue(-10);
-        sdsfsfsdasdfa
+        
         
         clip.start();
 
@@ -51,7 +50,12 @@ public class MusicPlayer implements Runnable {
         
     }
     @Override
-
+    public void run() {
+        File file = new File("src\\kingdom\\audio\\main_menu_soundtrack.wav");
+        String path = file.getAbsolutePath();
+        
+        playSound(path);
+    }      
     public void Hov() {
         File file = new File("src\\kingdom\\audio\\click_hov.wav"); 
         String path = file.getAbsolutePath();
@@ -60,7 +64,7 @@ public class MusicPlayer implements Runnable {
     
     } 
     
-asdfadsfa
+
     
 //    
 
