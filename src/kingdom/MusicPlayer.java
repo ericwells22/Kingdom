@@ -11,6 +11,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import static javax.sound.sampled.Clip.LOOP_CONTINUOUSLY;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
@@ -22,29 +23,32 @@ public class MusicPlayer implements Runnable {
     
     private ArrayList<String> musicFiles;
     private int currentSongIndex;
+    AudioInputStream audioInputStream;
+    Clip clip;
+    FloatControl gainControl;
+    
     
     public MusicPlayer(String... files){
         musicFiles = new ArrayList<String>();
 
         
-        
 //        for (String file: files)    
         
     }
-    private static void playSound(String fileName){
+    public void playSound(String fileName){
     
         
         try {
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(fileName).getAbsoluteFile());
-        Clip clip = AudioSystem.getClip();
+        audioInputStream = AudioSystem.getAudioInputStream(new File(fileName).getAbsoluteFile());
+        clip = AudioSystem.getClip();
         clip.open(audioInputStream);
-//        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);       
-//        gainControl.setValue(-10);
+        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);       
         
-        
+
         clip.start();
 
-    } catch(Exception e) {
+        
+        } catch(Exception e) {
         System.out.println("Error playing sound!");
     }
         
@@ -54,8 +58,39 @@ public class MusicPlayer implements Runnable {
         File file = new File("src\\kingdom\\audio\\main_menu_soundtrack.wav");
         String path = file.getAbsolutePath();
         
-        playSound(path);
-    }      
+try {
+        audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
+        clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);       
+        
+
+        clip.start();
+        clip.loop(LOOP_CONTINUOUSLY);
+
+        
+        } catch(Exception e) {
+        System.out.println("Error playing sound!");
+    }    
+    
+    
+    
+    }
+    
+    
+
+    
+    
+    
+//    Thread t = new Thread(new Runnable() {
+//    @Override
+//    public void run() {
+//        //work here
+//    }
+//});
+//t.start();//start thread
+    
+    
     public void Hov() {
         File file = new File("src\\kingdom\\audio\\click_hov.wav"); 
         String path = file.getAbsolutePath();

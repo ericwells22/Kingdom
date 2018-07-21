@@ -5,11 +5,13 @@
  */
 package kingdom;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author Eric
  */
-public class KingdomGame extends javax.swing.JFrame {
+public class KingdomGame extends  javax.swing.JFrame {
 
     /**
      * Creates new form KingdomFrame
@@ -27,23 +29,167 @@ public class KingdomGame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ZoomedLayout2 = new javax.swing.JPanel();
+        backgroundZoomed = new javax.swing.JLabel();
+        ZoomedLayout1 = new javax.swing.JPanel();
+        hovGlow = new javax.swing.JButton();
+        hovGlow1 = new javax.swing.JButton();
+        hovGlow2 = new javax.swing.JButton();
+        backGlow = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
         setResizable(false);
+
+        ZoomedLayout2.setLayout(null);
+
+        backgroundZoomed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/kingdom.layout2.gif"))); // NOI18N
+        ZoomedLayout2.add(backgroundZoomed);
+        backgroundZoomed.setBounds(0, 0, 1200, 780);
+
+        ZoomedLayout1.setLayout(null);
+
+        hovGlow.setBorderPainted(false);
+        hovGlow.setContentAreaFilled(false);
+        hovGlow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hovGlow.setFocusable(false);
+        hovGlow.setRequestFocusEnabled(false);
+        hovGlow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hovGlowMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hovGlowMouseExited(evt);
+            }
+        });
+        hovGlow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hovGlowActionPerformed(evt);
+            }
+        });
+        ZoomedLayout1.add(hovGlow);
+        hovGlow.setBounds(50, 180, 180, 270);
+
+        hovGlow1.setBorderPainted(false);
+        hovGlow1.setContentAreaFilled(false);
+        hovGlow1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hovGlow1.setFocusable(false);
+        hovGlow1.setRequestFocusEnabled(false);
+        hovGlow1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hovGlow1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hovGlow1MouseExited(evt);
+            }
+        });
+        hovGlow1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hovGlow1ActionPerformed(evt);
+            }
+        });
+        ZoomedLayout1.add(hovGlow1);
+        hovGlow1.setBounds(390, 160, 230, 230);
+
+        hovGlow2.setBorderPainted(false);
+        hovGlow2.setContentAreaFilled(false);
+        hovGlow2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hovGlow2.setFocusable(false);
+        hovGlow2.setRequestFocusEnabled(false);
+        hovGlow2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hovGlow2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hovGlow2MouseExited(evt);
+            }
+        });
+        hovGlow2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hovGlow2ActionPerformed(evt);
+            }
+        });
+        ZoomedLayout1.add(hovGlow2);
+        hovGlow2.setBounds(200, 160, 260, 310);
+
+        backGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/layout.zo.glow.png"))); // NOI18N
+        ZoomedLayout1.add(backGlow);
+        backGlow.setBounds(0, 0, 1200, 780);
+        backGlow.setVisible(false);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/kingdom.layout1.gif"))); // NOI18N
+        ZoomedLayout1.add(background);
+        background.setBounds(0, 0, 1200, 780);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
+            .addComponent(ZoomedLayout1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(ZoomedLayout2, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addComponent(ZoomedLayout1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(ZoomedLayout2, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        ZoomedLayout2.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void hovGlowMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hovGlowMouseEntered
+
+        backGlow.setVisible(true);
+    }//GEN-LAST:event_hovGlowMouseEntered
+
+    private void hovGlowMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hovGlowMouseExited
+        backGlow.setVisible(false);
+    }//GEN-LAST:event_hovGlowMouseExited
+
+    private void hovGlow1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hovGlow1MouseEntered
+        backGlow.setVisible(true);
+    }//GEN-LAST:event_hovGlow1MouseEntered
+
+    private void hovGlow1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hovGlow1MouseExited
+        backGlow.setVisible(false);
+    }//GEN-LAST:event_hovGlow1MouseExited
+
+    private void hovGlow2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hovGlow2MouseEntered
+        backGlow.setVisible(true);
+    }//GEN-LAST:event_hovGlow2MouseEntered
+
+    private void hovGlow2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hovGlow2MouseExited
+        backGlow.setVisible(false);
+    }//GEN-LAST:event_hovGlow2MouseExited
+
+    private void hovGlow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlow2ActionPerformed
+ZoomedLayout2.setVisible(true);
+ZoomedLayout2.setBounds(ZoomedLayout1.getBounds());
+ZoomedLayout1.setVisible(false);
+    }//GEN-LAST:event_hovGlow2ActionPerformed
+
+    private void hovGlowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlowActionPerformed
+ZoomedLayout2.setVisible(true);
+ZoomedLayout2.setBounds(ZoomedLayout1.getBounds());
+ZoomedLayout1.setVisible(false);
+    }//GEN-LAST:event_hovGlowActionPerformed
+
+    private void hovGlow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlow1ActionPerformed
+ZoomedLayout2.setVisible(true);
+ZoomedLayout2.setBounds(ZoomedLayout1.getBounds());
+ZoomedLayout1.setVisible(false);
+    }//GEN-LAST:event_hovGlow1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,13 +220,33 @@ public class KingdomGame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
+        
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new KingdomGame().setVisible(true);
+
+            
             }
         });
     }
+    
+    
+//    public void paint(Graphics g){
+//        
+//        g.drawOval(100, 100, 200, 150);
+//        
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ZoomedLayout1;
+    private javax.swing.JPanel ZoomedLayout2;
+    private javax.swing.JLabel backGlow;
+    private javax.swing.JLabel background;
+    private javax.swing.JLabel backgroundZoomed;
+    private javax.swing.JButton hovGlow;
+    private javax.swing.JButton hovGlow1;
+    private javax.swing.JButton hovGlow2;
     // End of variables declaration//GEN-END:variables
 }

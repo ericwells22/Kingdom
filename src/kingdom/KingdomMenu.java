@@ -6,8 +6,15 @@
 package kingdom;
 
 import com.sun.corba.se.spi.orbutil.threadpool.ThreadPool;
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.File;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -20,10 +27,15 @@ public class KingdomMenu extends javax.swing.JFrame {
      * Creates new form KingdomMenu
      */
     public KingdomMenu() {
-        
+
         initComponents();
         
+        bird.start();
+        
+        
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,67 +51,94 @@ public class KingdomMenu extends javax.swing.JFrame {
         buttonPlay = new javax.swing.JButton();
         labelKingdom = new javax.swing.JLabel();
         buttonHelp = new javax.swing.JButton();
+        birdFlyer = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(630, 280, 0, 0));
         setFocusable(false);
         setResizable(false);
 
         jPanel1.setLayout(null);
 
-        buttonOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/options.png"))); // NOI18N
+        buttonOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/options.png"))); // NOI18N
         buttonOptions.setText("OPTIONS");
         buttonOptions.setFocusPainted(false);
         buttonOptions.setFocusable(false);
         buttonOptions.setMargin(new java.awt.Insets(0, 2, 0, -14));
         buttonOptions.setPreferredSize(new java.awt.Dimension(150, 74));
-        buttonOptions.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/options.push.png"))); // NOI18N
-        buttonOptions.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/options.hov.png"))); // NOI18N
+        buttonOptions.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/options.push.png"))); // NOI18N
+        buttonOptions.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/options.hov.png"))); // NOI18N
         buttonOptions.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonOptionsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonOptionsMouseExited(evt);
+            }
+        });
+        buttonOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOptionsActionPerformed(evt);
             }
         });
         jPanel1.add(buttonOptions);
         buttonOptions.setBounds(200, 200, 150, 70);
 
-        buttonPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/play.png"))); // NOI18N
+        buttonPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/play.png"))); // NOI18N
         buttonPlay.setText("PLAY");
         buttonPlay.setFocusPainted(false);
         buttonPlay.setMargin(new java.awt.Insets(0, 0, 0, -14));
         buttonPlay.setPreferredSize(new java.awt.Dimension(150, 70));
-        buttonPlay.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/play.push.png"))); // NOI18N
-        buttonPlay.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/play.hov.png"))); // NOI18N
+        buttonPlay.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/play.push.png"))); // NOI18N
+        buttonPlay.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/play.hov.png"))); // NOI18N
         buttonPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonPlayMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonPlayMouseExited(evt);
+            }
+        });
+        buttonPlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPlayActionPerformed(evt);
             }
         });
         jPanel1.add(buttonPlay);
         buttonPlay.setBounds(200, 120, 150, 70);
 
-        labelKingdom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/kingdom.title.png"))); // NOI18N
+        labelKingdom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/titles/kingdom.title.png"))); // NOI18N
         labelKingdom.setText("jLabel1");
         labelKingdom.setFocusable(false);
         jPanel1.add(labelKingdom);
         labelKingdom.setBounds(70, 0, 410, 136);
 
-        buttonHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/help.png"))); // NOI18N
+        buttonHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/help.png"))); // NOI18N
         buttonHelp.setText("HELP");
         buttonHelp.setFocusPainted(false);
         buttonHelp.setFocusable(false);
         buttonHelp.setMargin(new java.awt.Insets(0, 0, 0, -14));
-        buttonHelp.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/help.push.png"))); // NOI18N
-        buttonHelp.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/help.hov.png"))); // NOI18N
+        buttonHelp.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/help.push.png"))); // NOI18N
+        buttonHelp.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/help.hov.png"))); // NOI18N
         buttonHelp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonHelpMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonHelpMouseExited(evt);
             }
         });
         jPanel1.add(buttonHelp);
         buttonHelp.setBounds(200, 280, 150, 70);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/animate-castle.gif"))); // NOI18N
+        birdFlyer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/birds/bird1.png"))); // NOI18N
+        birdFlyer.setText("bird");
+        jPanel1.add(birdFlyer);
+        birdFlyer.setBounds(530, 120, 36, 28);
+        birdFlyer.setVisible(false);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/animate-castle.gif"))); // NOI18N
         jPanel1.add(background);
         background.setBounds(0, 0, 565, 377);
 
@@ -119,7 +158,6 @@ public class KingdomMenu extends javax.swing.JFrame {
 
     private void buttonPlayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPlayMouseEntered
                 mPlay.Hov();
-                
     }//GEN-LAST:event_buttonPlayMouseEntered
 
     private void buttonOptionsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOptionsMouseEntered
@@ -128,18 +166,39 @@ public class KingdomMenu extends javax.swing.JFrame {
 
     private void buttonHelpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHelpMouseEntered
                 mPlay.Hov();
-
-                    Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-                    Thread[] threadArray = threadSet.toArray(new Thread[threadSet.size()]);
-                    
-                    System.out.println(Thread.activeCount());
-
-                    
-                    
                 //REPAINTING IF NEEDED : 
-//                        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/castle.gif"))); // NOI18N
+//                        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/castle.gif"))); // NOI18N
 //                        jPanel1.revalidate(); jPanel1.repaint();
     }//GEN-LAST:event_buttonHelpMouseEntered
+
+    private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed
+
+        
+        
+        
+
+    }//GEN-LAST:event_buttonOptionsActionPerformed
+
+    private void buttonPlayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPlayMouseExited
+        
+    }//GEN-LAST:event_buttonPlayMouseExited
+
+    private void buttonOptionsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOptionsMouseExited
+
+    }//GEN-LAST:event_buttonOptionsMouseExited
+
+    private void buttonHelpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHelpMouseExited
+
+    }//GEN-LAST:event_buttonHelpMouseExited
+
+    private void buttonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayActionPerformed
+GameSetup gSetup = new GameSetup();
+
+
+dispose();
+gSetup.setVisible(true);
+gSetup.setBounds(this.getBounds());
+    }//GEN-LAST:event_buttonPlayActionPerformed
                             
 
     /**
@@ -152,6 +211,8 @@ public class KingdomMenu extends javax.swing.JFrame {
     static KingdomMenu mMenu = new KingdomMenu();
     
     
+
+
     
 
 
@@ -181,17 +242,79 @@ public class KingdomMenu extends javax.swing.JFrame {
 
         /* Create and display the form */
         
-        
+
        
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
+            
             public void run() {
                 mPlay.run();
 
 
 
                 new KingdomMenu().setVisible(true);
+                
+
+
+                
             }
         });
+    }
+                
+Thread bird = new Thread(new Runnable() {
+   
+    public void run() {   
+        
+        
+        try {        
+
+            while(!(jPanel1 == null)){
+//                System.out.println(jPanel1);
+            bird.sleep(200);
+         ranBird(true,1,false); 
+            bird.sleep(130);
+         ranBird(false,2,false); 
+            bird.sleep(130);
+         ranBird(false,3,false); 
+            bird.sleep(130);
+            for (int i = 0; i < 6; i++) {
+         ranBird(false,1,false); 
+            bird.sleep(130);
+         ranBird(false,2,false); 
+            bird.sleep(130);
+         ranBird(false,3,false); 
+            bird.sleep(130);  
+            }
+            long num = (long)((Math.random()+1)*10000);
+            bird.sleep(num);
+}
+        } catch (InterruptedException ex) {
+            Logger.getLogger(KingdomMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }        
+
+
+
+});    
+
+
+    int ranY;
+    public void ranBird(boolean start, int birdN, boolean end) {
+        
+        if(start==true){       
+        ranY = (int) (Math.round(Math.random()*265));
+
+        birdFlyer.setBounds(jPanel1.getX()+550, jPanel1.getY()+(ranY), birdFlyer.getWidth(), birdFlyer.getHeight());
+        birdFlyer.setVisible(true);
+        }
+        else if(end==true){
+        birdFlyer.setVisible(false);}
+        if(birdN==1){birdFlyer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/birds/bird1.png")));}
+        if(birdN==2){birdFlyer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/birds/bird2.png")));}
+        if(birdN==3){birdFlyer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/birds/bird3.png")));}
+        if(start==false){
+        birdFlyer.setBounds(birdFlyer.getX()-30, jPanel1.getY()+(ranY), birdFlyer.getWidth(), birdFlyer.getHeight());}
     }
     
 
@@ -201,6 +324,7 @@ public class KingdomMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JLabel birdFlyer;
     private javax.swing.JButton buttonHelp;
     private javax.swing.JButton buttonOptions;
     private javax.swing.JButton buttonPlay;

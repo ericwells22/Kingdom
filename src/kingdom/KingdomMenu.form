@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
+      <Rectangle value="[630, 280, 0, 0]"/>
+    </Property>
     <Property name="focusable" type="boolean" value="false"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -44,7 +47,7 @@
         <Component class="javax.swing.JButton" name="buttonOptions">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/options.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/options.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="OPTIONS"/>
             <Property name="focusPainted" type="boolean" value="false"/>
@@ -56,14 +59,16 @@
               <Dimension value="[150, 74]"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/options.push.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/options.push.png"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/options.hov.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/options.hov.png"/>
             </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonOptionsMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonOptionsMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonOptionsActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -74,7 +79,7 @@
         <Component class="javax.swing.JButton" name="buttonPlay">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/play.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/play.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="PLAY"/>
             <Property name="focusPainted" type="boolean" value="false"/>
@@ -85,14 +90,16 @@
               <Dimension value="[150, 70]"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/play.push.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/play.push.png"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/play.hov.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/play.hov.png"/>
             </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonPlayMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonPlayMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPlayActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -103,7 +110,7 @@
         <Component class="javax.swing.JLabel" name="labelKingdom">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/kingdom.title.png"/>
+              <Image iconType="3" name="/kingdom/images/titles/kingdom.title.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -117,7 +124,7 @@
         <Component class="javax.swing.JButton" name="buttonHelp">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/help.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/help.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="HELP"/>
             <Property name="focusPainted" type="boolean" value="false"/>
@@ -126,14 +133,15 @@
               <Insets value="[0, 0, 0, -14]"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/help.push.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/help.push.png"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/help.hov.png"/>
+              <Image iconType="3" name="/kingdom/images/buttons/help.hov.png"/>
             </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonHelpMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonHelpMouseExited"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -141,10 +149,26 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="javax.swing.JLabel" name="birdFlyer">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/kingdom/images/birds/bird1.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="bird"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="birdFlyer.setVisible(false);"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="530" y="120" width="36" height="28"/>
+            </Constraint>
+          </Constraints>
+        </Component>
         <Component class="javax.swing.JLabel" name="background">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kingdom/images/animate-castle.gif"/>
+              <Image iconType="3" name="/kingdom/images/backs/animate-castle.gif"/>
             </Property>
           </Properties>
           <Constraints>
