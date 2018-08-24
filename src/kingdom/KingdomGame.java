@@ -30,6 +30,8 @@ public class KingdomGame extends  javax.swing.JFrame {
     private void initComponents() {
 
         ZoomedLayout2 = new javax.swing.JPanel();
+        Palace = new javax.swing.JButton();
+        PalaceGlow = new javax.swing.JLabel();
         backgroundZoomed = new javax.swing.JLabel();
         ZoomedLayout1 = new javax.swing.JPanel();
         hovGlow = new javax.swing.JButton();
@@ -43,6 +45,29 @@ public class KingdomGame extends  javax.swing.JFrame {
         setResizable(false);
 
         ZoomedLayout2.setLayout(null);
+
+        Palace.setContentAreaFilled(false);
+        Palace.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Palace.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PalaceMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PalaceMouseExited(evt);
+            }
+        });
+        Palace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PalaceActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(Palace);
+        Palace.setBounds(620, 120, 100, 80);
+
+        PalaceGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/glows/glow.Palace.png"))); // NOI18N
+        ZoomedLayout2.add(PalaceGlow);
+        PalaceGlow.setBounds(-10, 20, 1010, 750);
+        PalaceGlow.setVisible(false);
 
         backgroundZoomed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/kingdom.layout2.gif"))); // NOI18N
         ZoomedLayout2.add(backgroundZoomed);
@@ -113,7 +138,7 @@ public class KingdomGame extends  javax.swing.JFrame {
         ZoomedLayout1.add(hovGlow2);
         hovGlow2.setBounds(200, 160, 260, 310);
 
-        backGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/layout.zo.glow.png"))); // NOI18N
+        backGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/glows/layout.zo.glow.png"))); // NOI18N
         ZoomedLayout1.add(backGlow);
         backGlow.setBounds(0, 0, 1200, 780);
         backGlow.setVisible(false);
@@ -191,6 +216,18 @@ ZoomedLayout2.setBounds(ZoomedLayout1.getBounds());
 ZoomedLayout1.setVisible(false);
     }//GEN-LAST:event_hovGlow1ActionPerformed
 
+    private void PalaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PalaceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PalaceActionPerformed
+
+    private void PalaceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PalaceMouseEntered
+PalaceGlow.setVisible(true);
+    }//GEN-LAST:event_PalaceMouseEntered
+
+    private void PalaceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PalaceMouseExited
+PalaceGlow.setVisible(false);
+    }//GEN-LAST:event_PalaceMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -240,6 +277,8 @@ ZoomedLayout1.setVisible(false);
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Palace;
+    private javax.swing.JLabel PalaceGlow;
     private javax.swing.JPanel ZoomedLayout1;
     private javax.swing.JPanel ZoomedLayout2;
     private javax.swing.JLabel backGlow;
