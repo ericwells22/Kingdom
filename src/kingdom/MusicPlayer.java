@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,10 +11,12 @@ import java.util.ArrayList;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.Clip;
 import static javax.sound.sampled.Clip.LOOP_CONTINUOUSLY;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.Line;
 
 /**
  *
@@ -26,6 +29,13 @@ public class MusicPlayer implements Runnable {
     AudioInputStream audioInputStream;
     Clip clip;
     FloatControl gainControl;
+    
+    
+    
+    //CONTROL MUSIC
+    
+    public volatile int MusicTypePlay = 0;
+
     
     
     public MusicPlayer(String... files){
@@ -46,36 +56,64 @@ public class MusicPlayer implements Runnable {
         
 
         clip.start();
-
+        
         
         } catch(Exception e) {
-        System.out.println("Error playing sound!");
+        System.out.println("Error playing sound.");
     }
         
     }
     @Override
     public void run() {
-        File file = new File("src\\kingdom\\audio\\main_menu_soundtrack.wav");
-        String path = file.getAbsolutePath();
+        String path = "";
+        if(MusicTypePlay==1){File file = new File("src\\kingdom\\audio\\main_menu_soundtrack.wav");  path = file.getAbsolutePath();}
+        else if(MusicTypePlay==2){File file = new File("src\\kingdom\\audio\\game_springSounds.wav"); path = file.getAbsolutePath();}
+        
+        
+        
         
 try {
+        int newPlay = MusicTypePlay;
         audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
-        clip = AudioSystem.getClip();
-        clip.open(audioInputStream);
-        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);       
-        
+       
+          
+        Line.Info lineInfo = new Line.Info(Clip.class);
+        Line line = AudioSystem.getLine(lineInfo);
 
+        Clip clip = (Clip)line;        
+        clip.open(audioInputStream);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        
+        
         clip.start();
         clip.loop(LOOP_CONTINUOUSLY);
+            while(MusicTypePlay==newPlay){
+           
+        }
+            
+            BooleanControl muteControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
+            if(muteControl != null){
+            muteControl.setValue(true); 
+                                   }
 
+            clip.loop(0); 
+            clip.flush();
         
+          
         } catch(Exception e) {
-        System.out.println("Error playing sound!");
+        System.out.println("Error playing sound.");
     }    
-    
-    
+   
+
     
     }
+    public void stop(){
+        MusicTypePlay=0;
+        
+    }
+    
+    
+    
     
     
 

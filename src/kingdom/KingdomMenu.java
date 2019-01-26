@@ -5,17 +5,9 @@
  */
 package kingdom;
 
-import com.sun.corba.se.spi.orbutil.threadpool.ThreadPool;
-import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.io.File;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -55,7 +47,7 @@ public class KingdomMenu extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(630, 280, 0, 0));
+        setBounds(new java.awt.Rectangle(395, 130, 0, 0));
         setFocusable(false);
         setResizable(false);
 
@@ -109,7 +101,6 @@ public class KingdomMenu extends javax.swing.JFrame {
         buttonPlay.setBounds(200, 120, 150, 70);
 
         labelKingdom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/titles/kingdom.title.png"))); // NOI18N
-        labelKingdom.setText("jLabel1");
         labelKingdom.setFocusable(false);
         jPanel1.add(labelKingdom);
         labelKingdom.setBounds(70, 0, 410, 136);
@@ -146,11 +137,11 @@ public class KingdomMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -172,9 +163,6 @@ public class KingdomMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHelpMouseEntered
 
     private void buttonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOptionsActionPerformed
-
-        
-        
         
 
     }//GEN-LAST:event_buttonOptionsActionPerformed
@@ -192,12 +180,14 @@ public class KingdomMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHelpMouseExited
 
     private void buttonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayActionPerformed
-GameSetup gSetup = new GameSetup();
 
+    GameSetup gSetup = new GameSetup();
+    
+    gSetup.setBounds(this.getBounds());
+    gSetup.setVisible(true);
 
-dispose();
-gSetup.setVisible(true);
-gSetup.setBounds(this.getBounds());
+    dispose();
+
     }//GEN-LAST:event_buttonPlayActionPerformed
                             
 
@@ -205,7 +195,7 @@ gSetup.setBounds(this.getBounds());
      * @param args the command line arguments
      */
     
-    
+
 
     static MusicPlayer mPlay = new MusicPlayer();
     static KingdomMenu mMenu = new KingdomMenu();
@@ -248,8 +238,7 @@ gSetup.setBounds(this.getBounds());
             
             
             public void run() {
-                mPlay.run();
-
+                changeMusic(1);
 
 
                 new KingdomMenu().setVisible(true);
@@ -260,12 +249,37 @@ gSetup.setBounds(this.getBounds());
             }
         });
     }
-                
+    
+static public void changeMusic(int i){
+    mPlay.MusicTypePlay=i;
+    if(i==1){MedievalMusic.start();}
+    if(i==2){SpringMusic.start();}
+}
+    
+static public void stopMusic(){
+    //STOP MEDIEVAL MUSIC
+        mPlay.stop();
+        
+}
+    
+static Thread MedievalMusic = new Thread(new Runnable() {
+     public void run() {   
+        mPlay.run();
+     }
+
+});    
+static Thread SpringMusic = new Thread(new Runnable() {
+     public void run() {   
+        mPlay.run();
+     }
+
+});    
+         
 Thread bird = new Thread(new Runnable() {
    
-    public void run() {   
+ public void run() {   
         
-        
+                
         try {        
 
             while(!(jPanel1 == null)){

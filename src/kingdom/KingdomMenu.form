@@ -4,7 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
-      <Rectangle value="[630, 280, 0, 0]"/>
+      <Rectangle value="[395, 130, 0, 0]"/>
     </Property>
     <Property name="focusable" type="boolean" value="false"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -28,12 +28,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="565" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" min="-2" pref="565" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="377" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" min="-2" pref="377" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -112,7 +112,6 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/kingdom/images/titles/kingdom.title.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="jLabel1"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>

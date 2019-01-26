@@ -5,6 +5,8 @@
  */
 package kingdom;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Eric
@@ -34,9 +36,15 @@ public class GameSetup extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        kingdomN = new javax.swing.JLabel();
+        kingN = new javax.swing.JLabel();
+        difficulty = new javax.swing.JLabel();
+        easy = new javax.swing.JCheckBox();
+        medium = new javax.swing.JCheckBox();
+        hard = new javax.swing.JCheckBox();
+        kingdomBox = new javax.swing.JTextField();
+        kingBox = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
         titleSetup = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
@@ -48,12 +56,83 @@ public class GameSetup extends javax.swing.JFrame {
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Trajan Pro 3", 0, 11)); // NOI18N
-        jLabel1.setText("Kingdom Name");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(15, 113, 100, 20);
+        kingdomN.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        kingdomN.setText("Kingdom Name");
+        jPanel1.add(kingdomN);
+        kingdomN.setBounds(10, 100, 170, 30);
 
-        jButton1.setFont(new java.awt.Font("Trajan Pro 3", 0, 18)); // NOI18N
+        kingN.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        kingN.setText("king name");
+        jPanel1.add(kingN);
+        kingN.setBounds(10, 140, 120, 30);
+
+        difficulty.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        difficulty.setText("Difficulty");
+        jPanel1.add(difficulty);
+        difficulty.setBounds(10, 200, 120, 30);
+
+        easy.setFont(new java.awt.Font("Felix Titling", 0, 14)); // NOI18N
+        easy.setSelected(true);
+        easy.setText("Easy");
+        easy.setFocusable(false);
+        easy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                easyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(easy);
+        easy.setBounds(130, 210, 60, 30);
+
+        medium.setFont(new java.awt.Font("Felix Titling", 0, 14)); // NOI18N
+        medium.setText("Medium");
+        medium.setFocusable(false);
+        medium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mediumActionPerformed(evt);
+            }
+        });
+        jPanel1.add(medium);
+        medium.setBounds(210, 210, 90, 30);
+
+        hard.setFont(new java.awt.Font("Felix Titling", 0, 14)); // NOI18N
+        hard.setText("Hard");
+        hard.setFocusable(false);
+        hard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardActionPerformed(evt);
+            }
+        });
+        jPanel1.add(hard);
+        hard.setBounds(320, 210, 70, 30);
+
+        kingdomBox.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        kingdomBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kingdomBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(kingdomBox);
+        kingdomBox.setBounds(180, 100, 170, 30);
+        kingdomBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                if(kingdomBox.getText().length()>=12&&!(evt.getKeyChar()==KeyEvent.VK_DELETE||evt.getKeyChar()==KeyEvent.VK_BACK_SPACE)) {
+                    evt.consume();
+                }
+            }
+        });
+
+        kingBox.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jPanel1.add(kingBox);
+        kingBox.setBounds(130, 140, 170, 30);
+        kingBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                if(kingBox.getText().length()>=12&&!(evt.getKeyChar()==KeyEvent.VK_DELETE||evt.getKeyChar()==KeyEvent.VK_BACK_SPACE)) {
+                    evt.consume();
+                }
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jButton1.setText("TIME TO RULE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,10 +141,6 @@ public class GameSetup extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1);
         jButton1.setBounds(190, 320, 180, 40);
-
-        jTextField2.setFont(new java.awt.Font("Trajan Pro", 1, 14)); // NOI18N
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(120, 110, 120, 25);
 
         titleSetup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/titles/kingdom.gamesetup.png"))); // NOI18N
         jPanel1.add(titleSetup);
@@ -91,7 +166,9 @@ public class GameSetup extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        //STOP MEDIEVAL MUSIC
         
+        KingdomMenu.changeMusic(2);
         
         
         
@@ -102,20 +179,63 @@ public class GameSetup extends javax.swing.JFrame {
         
         KingdomGame kGame = new KingdomGame();
 
-    dispose();
-kGame.setVisible(true);
-kGame.setBounds(this.getX()-295,this.getY()-130,1200,780);
+        kGame.setBounds(this.getX()-295,this.getY()-130,1200,780);
+        kGame.setVisible(true);
+        
+        kGame.nameKing = kingBox.getText();
+        kGame.nameKingdom = kingdomBox.getText();
+
+
+if(easy.isSelected()){kGame.Difficulty=1;}
+if(medium.isSelected()){kGame.Difficulty=2;}
+if(hard.isSelected()){kGame.Difficulty=3;}
+
+kGame.setScrollTitle();
+
+    
+dispose();    
+    
+     
+
 
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void kingdomBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kingdomBoxActionPerformed
+
+
+    }//GEN-LAST:event_kingdomBoxActionPerformed
+
+    private void easyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyActionPerformed
+medium.setSelected(false); hard.setSelected(false);
+if(easy.isSelected()==false && medium.isSelected()==false && hard.isSelected()==false){
+    easy.setSelected(true);
+}
+
+    }//GEN-LAST:event_easyActionPerformed
+
+    private void mediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumActionPerformed
+easy.setSelected(false); hard.setSelected(false);
+if(easy.isSelected()==false && medium.isSelected()==false && hard.isSelected()==false){
+    medium.setSelected(true);
+}
+    }//GEN-LAST:event_mediumActionPerformed
+
+    private void hardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardActionPerformed
+easy.setSelected(false); medium.setSelected(false);
+if(easy.isSelected()==false && medium.isSelected()==false && hard.isSelected()==false){
+    hard.setSelected(true);
+}
+    }//GEN-LAST:event_hardActionPerformed
+
 
     /**
      * @param args the command line arguments
      */
    
     
-    MusicPlayer mPlay = new MusicPlayer();
+    KingdomMenu kMenu = new KingdomMenu();
     
     
     public static void main(String args[]) {
@@ -159,10 +279,16 @@ kGame.setBounds(this.getX()-295,this.getY()-130,1200,780);
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JLabel difficulty;
+    public javax.swing.JCheckBox easy;
+    public javax.swing.JCheckBox hard;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField kingBox;
+    private javax.swing.JLabel kingN;
+    public javax.swing.JTextField kingdomBox;
+    private javax.swing.JLabel kingdomN;
+    public javax.swing.JCheckBox medium;
     private javax.swing.JLabel titleSetup;
     // End of variables declaration//GEN-END:variables
 }

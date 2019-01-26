@@ -5,19 +5,60 @@
  */
 package kingdom;
 
+import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Eric
  */
-public class KingdomGame extends  javax.swing.JFrame {
+public class KingdomGame extends javax.swing.JFrame implements MouseListener {
 
     /**
      * Creates new form KingdomFrame
      */
     public KingdomGame() {
+        
         initComponents();
+        this.addMouseListener(this);
+
+        CursorSet(false);
+        
+        InnerCityGlow.setVisible(false);
+        PalaceGlow.setVisible(false);
+        TradeDistrictGlow.setVisible(false);
+        QuarterWealthGlow.setVisible(false);
+        TowerGlow.setVisible(false);
+        
+        
+        PalaceLayout.setVisible(false);
+        
+        InnerCityLayout.setVisible(false);
+        OuterCityLayout.setVisible(false);
+        QuarterOfWealth.setVisible(false);
+        TradingDistrictLayout.setVisible(false);
+
+        
+        waitThread.start();
+        
+        
+        ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1);
+        
+       
+        
     }
 
     /**
@@ -29,55 +70,128 @@ public class KingdomGame extends  javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ZoomedLayout2 = new javax.swing.JPanel();
-        Palace = new javax.swing.JButton();
-        PalaceGlow = new javax.swing.JLabel();
-        backgroundZoomed = new javax.swing.JLabel();
+        TradingDistrictLayout = new javax.swing.JPanel();
+        backArrow5 = new javax.swing.JButton();
+        backgroundTrading = new javax.swing.JLabel();
+        InnerCityLayout = new javax.swing.JPanel();
+        backArrow2 = new javax.swing.JButton();
+        backgroundInnerCity = new javax.swing.JLabel();
+        PalaceLayout = new javax.swing.JPanel();
+        backArrow1 = new javax.swing.JButton();
+        backgroundPalace = new javax.swing.JLabel();
         ZoomedLayout1 = new javax.swing.JPanel();
         hovGlow = new javax.swing.JButton();
         hovGlow1 = new javax.swing.JButton();
         hovGlow2 = new javax.swing.JButton();
         backGlow = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
+        ZoomedLayout2 = new javax.swing.JPanel();
+        toggleScroll = new javax.swing.JButton();
+        scrollTitle = new javax.swing.JLabel();
+        scrollBar1 = new javax.swing.JLabel();
+        ScrollIn = new javax.swing.JLabel();
+        ScrollOut = new javax.swing.JLabel();
+        backArrow = new javax.swing.JButton();
+        Palace = new javax.swing.JButton();
+        Tower1 = new javax.swing.JButton();
+        InnerCity1 = new javax.swing.JButton();
+        InnerCity2 = new javax.swing.JButton();
+        Quarter2 = new javax.swing.JButton();
+        Quarter1 = new javax.swing.JButton();
+        Trade1 = new javax.swing.JButton();
+        TowerGlow = new javax.swing.JLabel();
+        TradeDistrictGlow = new javax.swing.JLabel();
+        QuarterWealthGlow = new javax.swing.JLabel();
+        InnerCityGlow = new javax.swing.JLabel();
+        PalaceGlow = new javax.swing.JLabel();
+        backgroundZoomed = new javax.swing.JLabel();
+        QuarterOfWealth = new javax.swing.JPanel();
+        backArrow4 = new javax.swing.JButton();
+        backgroundQuarter = new javax.swing.JLabel();
+        OuterCityLayout = new javax.swing.JPanel();
+        backArrow3 = new javax.swing.JButton();
+        backgroundOuterCity = new javax.swing.JLabel();
+        loadingScreen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
         setFocusable(false);
+        setMinimumSize(new java.awt.Dimension(1200, 800));
         setResizable(false);
 
-        ZoomedLayout2.setLayout(null);
+        TradingDistrictLayout.setMinimumSize(new java.awt.Dimension(1200, 800));
+        TradingDistrictLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
+        TradingDistrictLayout.setLayout(null);
 
-        Palace.setContentAreaFilled(false);
-        Palace.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Palace.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                PalaceMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                PalaceMouseExited(evt);
-            }
-        });
-        Palace.addActionListener(new java.awt.event.ActionListener() {
+        backArrow5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        backArrow5.setContentAreaFilled(false);
+        backArrow5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PalaceActionPerformed(evt);
+                backArrow5ActionPerformed(evt);
             }
         });
-        ZoomedLayout2.add(Palace);
-        Palace.setBounds(620, 120, 100, 80);
+        TradingDistrictLayout.add(backArrow5);
+        backArrow5.setBounds(30, 20, 80, 60);
 
-        PalaceGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/glows/glow.Palace.png"))); // NOI18N
-        ZoomedLayout2.add(PalaceGlow);
-        PalaceGlow.setBounds(-10, 20, 1010, 750);
-        PalaceGlow.setVisible(false);
+        backgroundTrading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/trading_district/trading_district_GIF org.gif"))); // NOI18N
+        backgroundTrading.setMaximumSize(new java.awt.Dimension(1200, 780));
+        backgroundTrading.setMinimumSize(new java.awt.Dimension(1200, 780));
+        backgroundTrading.setPreferredSize(new java.awt.Dimension(1200, 780));
+        TradingDistrictLayout.add(backgroundTrading);
+        backgroundTrading.setBounds(0, 0, 1200, 780);
 
-        backgroundZoomed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/kingdom.layout2.gif"))); // NOI18N
-        ZoomedLayout2.add(backgroundZoomed);
-        backgroundZoomed.setBounds(0, 0, 1200, 780);
+        InnerCityLayout.setMinimumSize(new java.awt.Dimension(1200, 800));
+        InnerCityLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
+        InnerCityLayout.setLayout(null);
 
+        backArrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        backArrow2.setContentAreaFilled(false);
+        backArrow2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backArrow2ActionPerformed(evt);
+            }
+        });
+        InnerCityLayout.add(backArrow2);
+        backArrow2.setBounds(30, 20, 80, 60);
+
+        backgroundInnerCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/inner_city/inner_city_GIF.gif"))); // NOI18N
+        backgroundInnerCity.setText("jLabel1");
+        InnerCityLayout.add(backgroundInnerCity);
+        backgroundInnerCity.setBounds(0, 0, 1200, 800);
+
+        PalaceLayout.setMinimumSize(new java.awt.Dimension(1200, 800));
+        PalaceLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
+        PalaceLayout.setLayout(null);
+
+        backArrow1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        backArrow1.setContentAreaFilled(false);
+        backArrow1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backArrow1ActionPerformed(evt);
+            }
+        });
+        PalaceLayout.add(backArrow1);
+        backArrow1.setBounds(30, 20, 80, 60);
+
+        backgroundPalace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/palace/royal_palace1_GIF.gif"))); // NOI18N
+        backgroundPalace.setMaximumSize(new java.awt.Dimension(1200, 800));
+        backgroundPalace.setMinimumSize(new java.awt.Dimension(1200, 800));
+        backgroundPalace.setPreferredSize(new java.awt.Dimension(1200, 800));
+        PalaceLayout.add(backgroundPalace);
+        backgroundPalace.setBounds(0, -20, 1200, 820);
+
+        ZoomedLayout1.setMinimumSize(new java.awt.Dimension(1200, 800));
+        ZoomedLayout1.setPreferredSize(new java.awt.Dimension(1200, 800));
         ZoomedLayout1.setLayout(null);
 
         hovGlow.setBorderPainted(false);
         hovGlow.setContentAreaFilled(false);
-        hovGlow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hovGlow.setFocusable(false);
         hovGlow.setRequestFocusEnabled(false);
         hovGlow.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +212,7 @@ public class KingdomGame extends  javax.swing.JFrame {
 
         hovGlow1.setBorderPainted(false);
         hovGlow1.setContentAreaFilled(false);
-        hovGlow1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hovGlow1.setDefaultCapable(false);
         hovGlow1.setFocusable(false);
         hovGlow1.setRequestFocusEnabled(false);
         hovGlow1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,7 +233,6 @@ public class KingdomGame extends  javax.swing.JFrame {
 
         hovGlow2.setBorderPainted(false);
         hovGlow2.setContentAreaFilled(false);
-        hovGlow2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hovGlow2.setFocusable(false);
         hovGlow2.setRequestFocusEnabled(false);
         hovGlow2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -147,30 +260,338 @@ public class KingdomGame extends  javax.swing.JFrame {
         ZoomedLayout1.add(background);
         background.setBounds(0, 0, 1200, 780);
 
+        ZoomedLayout2.setMinimumSize(new java.awt.Dimension(1200, 800));
+        ZoomedLayout2.setPreferredSize(new java.awt.Dimension(1200, 800));
+        ZoomedLayout2.setLayout(null);
+
+        toggleScroll.setBorderPainted(false);
+        toggleScroll.setContentAreaFilled(false);
+        toggleScroll.setName(""); // NOI18N
+        toggleScroll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleScrollActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(toggleScroll);
+        toggleScroll.setBounds(860, 20, 340, 70);
+
+        scrollTitle.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        scrollTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scrollTitle.setText("kingdom name");
+        ZoomedLayout2.add(scrollTitle);
+        scrollTitle.setBounds(880, 30, 320, 60);
+
+        scrollBar1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        scrollBar1.setText("__________________________________");
+        ZoomedLayout2.add(scrollBar1);
+        scrollBar1.setBounds(871, 70, 370, 22);
+
+        ScrollIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/misc/scroll.overlay.in.png"))); // NOI18N
+        ZoomedLayout2.add(ScrollIn);
+        ScrollIn.setBounds(820, -20, 380, 130);
+        ScrollIn.setVisible(false);
+
+        ScrollOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/misc/scroll.overlay.out.png"))); // NOI18N
+        ScrollOut.setToolTipText(null);
+        ZoomedLayout2.add(ScrollOut);
+        ScrollOut.setBounds(820, -20, 390, 900);
+
+        backArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        backArrow.setContentAreaFilled(false);
+        backArrow.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backArrowActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(backArrow);
+        backArrow.setBounds(30, 20, 80, 60);
+
+        Palace.setContentAreaFilled(false);
+        Palace.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PalaceMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PalaceMouseExited(evt);
+            }
+        });
+        Palace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PalaceActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(Palace);
+        Palace.setBounds(630, 130, 90, 90);
+
+        Tower1.setContentAreaFilled(false);
+        Tower1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Tower1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Tower1MouseExited(evt);
+            }
+        });
+        Tower1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tower1ActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(Tower1);
+        Tower1.setBounds(230, 360, 150, 120);
+
+        InnerCity1.setContentAreaFilled(false);
+        InnerCity1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                InnerCity1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                InnerCity1MouseExited(evt);
+            }
+        });
+        InnerCity1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InnerCity1ActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(InnerCity1);
+        InnerCity1.setBounds(600, 210, 130, 100);
+
+        InnerCity2.setContentAreaFilled(false);
+        InnerCity2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                InnerCity2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                InnerCity2MouseExited(evt);
+            }
+        });
+        InnerCity2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InnerCity2ActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(InnerCity2);
+        InnerCity2.setBounds(520, 190, 90, 100);
+
+        Quarter2.setContentAreaFilled(false);
+        Quarter2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Quarter2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Quarter2MouseExited(evt);
+            }
+        });
+        Quarter2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Quarter2ActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(Quarter2);
+        Quarter2.setBounds(460, 170, 90, 90);
+
+        Quarter1.setContentAreaFilled(false);
+        Quarter1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Quarter1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Quarter1MouseExited(evt);
+            }
+        });
+        Quarter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Quarter1ActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(Quarter1);
+        Quarter1.setBounds(370, 230, 120, 100);
+
+        Trade1.setContentAreaFilled(false);
+        Trade1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Trade1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Trade1MouseExited(evt);
+            }
+        });
+        Trade1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Trade1ActionPerformed(evt);
+            }
+        });
+        ZoomedLayout2.add(Trade1);
+        Trade1.setBounds(370, 310, 250, 90);
+
+        TowerGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/glows/glow.Tower.png"))); // NOI18N
+        ZoomedLayout2.add(TowerGlow);
+        TowerGlow.setBounds(20, -110, 1010, 750);
+        PalaceGlow.setVisible(false);
+
+        TradeDistrictGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/glows/glow.Trade.png"))); // NOI18N
+        ZoomedLayout2.add(TradeDistrictGlow);
+        TradeDistrictGlow.setBounds(10, -80, 1010, 750);
+        PalaceGlow.setVisible(false);
+
+        QuarterWealthGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/glows/glow.Quarter.png"))); // NOI18N
+        ZoomedLayout2.add(QuarterWealthGlow);
+        QuarterWealthGlow.setBounds(0, -30, 1010, 750);
+        PalaceGlow.setVisible(false);
+
+        InnerCityGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/glows/glow.innerCity.png"))); // NOI18N
+        ZoomedLayout2.add(InnerCityGlow);
+        InnerCityGlow.setBounds(0, -40, 1010, 750);
+        PalaceGlow.setVisible(false);
+
+        PalaceGlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/glows/glow.Palace.png"))); // NOI18N
+        ZoomedLayout2.add(PalaceGlow);
+        PalaceGlow.setBounds(-10, 20, 1010, 750);
+        PalaceGlow.setVisible(false);
+
+        backgroundZoomed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/backs/kingdom.layout2.gif"))); // NOI18N
+        ZoomedLayout2.add(backgroundZoomed);
+        backgroundZoomed.setBounds(0, 0, 1200, 780);
+
+        QuarterOfWealth.setMinimumSize(new java.awt.Dimension(1200, 800));
+        QuarterOfWealth.setPreferredSize(new java.awt.Dimension(1200, 800));
+        QuarterOfWealth.setLayout(null);
+
+        backArrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        backArrow4.setContentAreaFilled(false);
+        backArrow4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backArrow4ActionPerformed(evt);
+            }
+        });
+        QuarterOfWealth.add(backArrow4);
+        backArrow4.setBounds(30, 20, 80, 60);
+
+        backgroundQuarter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/quarter_wealth/quarter_wealth_GIF_org.gif"))); // NOI18N
+        QuarterOfWealth.add(backgroundQuarter);
+        backgroundQuarter.setBounds(0, 0, 1200, 800);
+
+        OuterCityLayout.setMinimumSize(new java.awt.Dimension(1200, 800));
+        OuterCityLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
+        OuterCityLayout.setLayout(null);
+
+        backArrow3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        backArrow3.setContentAreaFilled(false);
+        backArrow3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        backArrow3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backArrow3ActionPerformed(evt);
+            }
+        });
+        OuterCityLayout.add(backArrow3);
+        backArrow3.setBounds(30, 20, 80, 60);
+
+        backgroundOuterCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/outer_city/outer_city_GIF.gif"))); // NOI18N
+        backgroundOuterCity.setMaximumSize(new java.awt.Dimension(1200, 780));
+        backgroundOuterCity.setMinimumSize(new java.awt.Dimension(1200, 780));
+        backgroundOuterCity.setPreferredSize(new java.awt.Dimension(1200, 780));
+        OuterCityLayout.add(backgroundOuterCity);
+        backgroundOuterCity.setBounds(0, 0, 1200, 780);
+
+        loadingScreen.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
+        loadingScreen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loadingScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/misc/loading.gif"))); // NOI18N
+        loadingScreen.setMaximumSize(new java.awt.Dimension(1200, 800));
+        loadingScreen.setMinimumSize(new java.awt.Dimension(1200, 800));
+        loadingScreen.setPreferredSize(new java.awt.Dimension(1200, 800));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ZoomedLayout1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addComponent(ZoomedLayout1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(ZoomedLayout2, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ZoomedLayout1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(ZoomedLayout2, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PalaceLayout, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(loadingScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(InnerCityLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(OuterCityLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(QuarterOfWealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(TradingDistrictLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ZoomedLayout1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(ZoomedLayout2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(PalaceLayout, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(loadingScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(InnerCityLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(OuterCityLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(QuarterOfWealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(TradingDistrictLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         ZoomedLayout2.setVisible(false);
+        loadingScreen.setBounds(0,0,loadingScreen.getWidth(),loadingScreen.getHeight());
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void hovGlowMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hovGlowMouseEntered
@@ -199,25 +620,23 @@ public class KingdomGame extends  javax.swing.JFrame {
     }//GEN-LAST:event_hovGlow2MouseExited
 
     private void hovGlow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlow2ActionPerformed
-ZoomedLayout2.setVisible(true);
-ZoomedLayout2.setBounds(ZoomedLayout1.getBounds());
-ZoomedLayout1.setVisible(false);
+SwitchPanel(ZoomedLayout1,ZoomedLayout2);
+
     }//GEN-LAST:event_hovGlow2ActionPerformed
 
     private void hovGlowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlowActionPerformed
-ZoomedLayout2.setVisible(true);
-ZoomedLayout2.setBounds(ZoomedLayout1.getBounds());
-ZoomedLayout1.setVisible(false);
+SwitchPanel(ZoomedLayout1,ZoomedLayout2);
     }//GEN-LAST:event_hovGlowActionPerformed
 
     private void hovGlow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlow1ActionPerformed
-ZoomedLayout2.setVisible(true);
-ZoomedLayout2.setBounds(ZoomedLayout1.getBounds());
-ZoomedLayout1.setVisible(false);
+SwitchPanel(ZoomedLayout1,ZoomedLayout2);
+
     }//GEN-LAST:event_hovGlow1ActionPerformed
 
     private void PalaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PalaceActionPerformed
-        // TODO add your handling code here:
+
+SwitchPanel(ZoomedLayout2,PalaceLayout);
+
     }//GEN-LAST:event_PalaceActionPerformed
 
     private void PalaceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PalaceMouseEntered
@@ -227,6 +646,201 @@ PalaceGlow.setVisible(true);
     private void PalaceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PalaceMouseExited
 PalaceGlow.setVisible(false);
     }//GEN-LAST:event_PalaceMouseExited
+
+    private void InnerCity1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity1MouseEntered
+InnerCityGlow.setVisible(true);
+    }//GEN-LAST:event_InnerCity1MouseEntered
+
+    private void InnerCity1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity1MouseExited
+InnerCityGlow.setVisible(false);InnerCityGlow.setVisible(false);    }//GEN-LAST:event_InnerCity1MouseExited
+
+    private void InnerCity1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InnerCity1ActionPerformed
+
+SwitchPanel(ZoomedLayout2,InnerCityLayout);
+   
+
+    }//GEN-LAST:event_InnerCity1ActionPerformed
+
+    private void InnerCity2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity2MouseEntered
+InnerCityGlow.setVisible(true);    }//GEN-LAST:event_InnerCity2MouseEntered
+
+    private void InnerCity2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity2MouseExited
+InnerCityGlow.setVisible(false);    }//GEN-LAST:event_InnerCity2MouseExited
+
+    private void InnerCity2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InnerCity2ActionPerformed
+
+SwitchPanel(ZoomedLayout2,InnerCityLayout);
+
+    }//GEN-LAST:event_InnerCity2ActionPerformed
+
+    private void Quarter1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Quarter1MouseEntered
+QuarterWealthGlow.setVisible(true);
+    }//GEN-LAST:event_Quarter1MouseEntered
+
+    private void Quarter1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Quarter1MouseExited
+QuarterWealthGlow.setVisible(false);    }//GEN-LAST:event_Quarter1MouseExited
+
+    private void Quarter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Quarter1ActionPerformed
+SwitchPanel(ZoomedLayout2,QuarterOfWealth);
+
+    }//GEN-LAST:event_Quarter1ActionPerformed
+
+    private void Quarter2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Quarter2MouseEntered
+QuarterWealthGlow.setVisible(true);    }//GEN-LAST:event_Quarter2MouseEntered
+
+    private void Quarter2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Quarter2MouseExited
+QuarterWealthGlow.setVisible(false);    }//GEN-LAST:event_Quarter2MouseExited
+
+    private void Quarter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Quarter2ActionPerformed
+SwitchPanel(ZoomedLayout2,QuarterOfWealth);
+
+    }//GEN-LAST:event_Quarter2ActionPerformed
+
+    private void Trade1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Trade1MouseEntered
+TradeDistrictGlow.setVisible(true);    }//GEN-LAST:event_Trade1MouseEntered
+
+    private void Trade1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Trade1MouseExited
+TradeDistrictGlow.setVisible(false);    }//GEN-LAST:event_Trade1MouseExited
+
+    private void Trade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Trade1ActionPerformed
+SwitchPanel(ZoomedLayout2, TradingDistrictLayout);
+
+    }//GEN-LAST:event_Trade1ActionPerformed
+
+    private void Tower1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tower1MouseEntered
+TowerGlow.setVisible(true);    }//GEN-LAST:event_Tower1MouseEntered
+
+    private void Tower1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tower1MouseExited
+TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
+
+    private void Tower1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tower1ActionPerformed
+
+
+
+    }//GEN-LAST:event_Tower1ActionPerformed
+
+    private void backArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrowActionPerformed
+SwitchPanel(ZoomedLayout2,ZoomedLayout1);
+    }//GEN-LAST:event_backArrowActionPerformed
+
+    private void toggleScrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleScrollActionPerformed
+ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1);
+
+    }//GEN-LAST:event_toggleScrollActionPerformed
+
+    private void backArrow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow1ActionPerformed
+SwitchPanel(PalaceLayout,ZoomedLayout2);
+    }//GEN-LAST:event_backArrow1ActionPerformed
+
+    private void backArrow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow2ActionPerformed
+SwitchPanel(InnerCityLayout,ZoomedLayout2);
+    }//GEN-LAST:event_backArrow2ActionPerformed
+
+    private void backArrow3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow3ActionPerformed
+SwitchPanel(OuterCityLayout,ZoomedLayout2);
+    }//GEN-LAST:event_backArrow3ActionPerformed
+
+    private void backArrow4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow4ActionPerformed
+SwitchPanel(QuarterOfWealth,ZoomedLayout2);
+    }//GEN-LAST:event_backArrow4ActionPerformed
+
+    private void backArrow5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow5ActionPerformed
+SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
+
+    }//GEN-LAST:event_backArrow5ActionPerformed
+GameSetup gamesetup = new GameSetup();
+boolean scrollIn = false;
+
+String nameKingdom;
+String nameKing;
+int Difficulty; 
+        
+public void setScrollTitle(){
+    scrollTitle.setText(nameKingdom);
+}
+
+
+
+
+
+
+public void ToggleScroll(JLabel title, JLabel scrollout, JLabel scrollin, JLabel scrollbar){
+    if(scrollIn==false){
+    scrollIn=true;
+    scrollout.setVisible(false); scrollbar.setVisible(false); title.setVisible(false);
+    
+    scrollin.setVisible(true);  
+} else{
+    scrollIn=false;
+    scrollout.setVisible(true); scrollbar.setVisible(true); title.setVisible(true);
+    
+    scrollin.setVisible(false);
+}
+}
+public void SwitchPanel(JPanel from, JPanel to){
+
+    
+            from.setVisible(false);
+            int rand = 250;
+
+            
+            waiting = rand;
+            waitDone = 1;
+              
+            jReady = to;
+          
+    
+}
+
+
+
+
+Thread waitThread = new Thread(new Runnable() {
+   
+ public void run() {   
+        
+                
+        try {     
+            while(true){
+                
+                
+            if(waiting>0){
+                
+                loadingScreen.setVisible(true);                 
+            Thread.sleep(waiting);  
+            waiting=0;
+            if(waitDone==1){ loadingScreen.setVisible(false); jReady.setVisible(true); waitDone=0;}
+            
+                
+
+            }
+            
+            
+            }
+             } catch (InterruptedException ex) {
+            Logger.getLogger(KingdomMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }        
+
+
+
+});    
+
+
+public void CursorSet(boolean down){
+    String path = "";
+    if(down==false){path = "/kingdom/images/misc/med_cursor.png";}
+    if(down==true){ path = "/kingdom/images/misc/med_cursor.png"; }
+    
+    setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+new ImageIcon(getClass().getResource(path)).getImage(),
+new Point(0,0),"custom cursor")); 
+    
+}
+
+
+
 
     /**
      * @param args the command line arguments
@@ -266,26 +880,87 @@ PalaceGlow.setVisible(false);
 
             
             }
+            
         });
     }
-    
+
     
 //    public void paint(Graphics g){
 //        
 //        g.drawOval(100, 100, 200, 150);
 //        
 //    }
-
+    
+    
+    
+    
+    public volatile int waiting = 0;
+    public volatile int waitDone = 0;
+    
+    
+    public volatile JPanel jReady = null;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton InnerCity1;
+    private javax.swing.JButton InnerCity2;
+    private javax.swing.JLabel InnerCityGlow;
+    private javax.swing.JPanel InnerCityLayout;
+    private javax.swing.JPanel OuterCityLayout;
     private javax.swing.JButton Palace;
     private javax.swing.JLabel PalaceGlow;
+    private javax.swing.JPanel PalaceLayout;
+    private javax.swing.JButton Quarter1;
+    private javax.swing.JButton Quarter2;
+    private javax.swing.JPanel QuarterOfWealth;
+    private javax.swing.JLabel QuarterWealthGlow;
+    private javax.swing.JLabel ScrollIn;
+    private javax.swing.JLabel ScrollOut;
+    private javax.swing.JButton Tower1;
+    private javax.swing.JLabel TowerGlow;
+    private javax.swing.JButton Trade1;
+    private javax.swing.JLabel TradeDistrictGlow;
+    private javax.swing.JPanel TradingDistrictLayout;
     private javax.swing.JPanel ZoomedLayout1;
     private javax.swing.JPanel ZoomedLayout2;
+    private javax.swing.JButton backArrow;
+    private javax.swing.JButton backArrow1;
+    private javax.swing.JButton backArrow2;
+    private javax.swing.JButton backArrow3;
+    private javax.swing.JButton backArrow4;
+    private javax.swing.JButton backArrow5;
     private javax.swing.JLabel backGlow;
     private javax.swing.JLabel background;
+    private javax.swing.JLabel backgroundInnerCity;
+    private javax.swing.JLabel backgroundOuterCity;
+    private javax.swing.JLabel backgroundPalace;
+    private javax.swing.JLabel backgroundQuarter;
+    private javax.swing.JLabel backgroundTrading;
     private javax.swing.JLabel backgroundZoomed;
     private javax.swing.JButton hovGlow;
     private javax.swing.JButton hovGlow1;
     private javax.swing.JButton hovGlow2;
+    private javax.swing.JLabel loadingScreen;
+    private javax.swing.JLabel scrollBar1;
+    private javax.swing.JLabel scrollTitle;
+    private javax.swing.JButton toggleScroll;
     // End of variables declaration//GEN-END:variables
-}
+
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {CursorSet(false);}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {CursorSet(true);}
+
+    
+    
+    }
+
