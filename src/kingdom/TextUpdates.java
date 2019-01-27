@@ -15,19 +15,19 @@ import java.util.ArrayList;
 public class TextUpdates {
     
 
+    
+    
+    
     public static String RandomCase(ArrayList<String> list){
         int r = (int)(Math.random()*list.size());
         
         return list.get(r); 
         
     } //Return a random element from a String ArrayList
-    
-        
-    
-    
+          
     //INNER CITY 
     //==========================================
-    public static String RandomGuardGreet(String kingName){ //Return a random royal guard greeting
+    public static String randomGuardGreet(String kingName){ //Return a random royal guard greeting
        String full_greeting = "Royal Guard: ";
         ArrayList<String> greet1 = new ArrayList<>();
            greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
@@ -41,44 +41,6 @@ public class TextUpdates {
            
            
         }
-    
-    public static String randomFarmerGreet(String kingName) {
-        String full_greeting = "City Farmer: ";
-        ArrayList<String> greet1 = new ArrayList<>();
-           greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
-           full_greeting += RandomCase(greet1);
-           
-        ArrayList<String> greet2 = new ArrayList<>();
-           greet2.add("What would you like to hear about?"); greet2.add("What interests you?"); greet2.add("What shall I tell you?"); greet2.add("What do you need?"); 
-           full_greeting += RandomCase(greet2);
-           
-           return full_greeting; 
-    }
-    
-    public static String randomMerchantGreet(String kingName) {
-        String full_greeting = "Merchant: ";
-        ArrayList<String> greet1 = new ArrayList<>();
-           greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
-           full_greeting += RandomCase(greet1);
-           
-        ArrayList<String> greet2 = new ArrayList<>();
-           greet2.add("What would you like to hear about?"); greet2.add("What interests you?"); greet2.add("What shall I tell you?"); greet2.add("What do you need?"); 
-           full_greeting += RandomCase(greet2);
-           
-           return full_greeting; 
-    }
-    public static String randomNobleGreet(String kingName) {
-        String full_greeting = "Merchant: ";
-        ArrayList<String> greet1 = new ArrayList<>();
-           greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
-           full_greeting += RandomCase(greet1);
-           
-        ArrayList<String> greet2 = new ArrayList<>();
-           greet2.add("What would you like to hear about?"); greet2.add("What interests you?"); greet2.add("What shall I tell you?"); greet2.add("What do you need?"); 
-           full_greeting += RandomCase(greet2);
-           
-           return full_greeting; 
-    }
     public static String PoorPersonDialogue(String kingName, int howLarge, boolean thanks){ 
         
         String dialogue = "Lowly Peasant: ";
@@ -114,6 +76,55 @@ public class TextUpdates {
            return dialogue;
            
         }
+
+    
+    //OUTER CITY 
+    //==========================================
+    public static String randomFarmerGreet(String kingName) {
+        String full_greeting = "Outer City Farmer: ";
+        ArrayList<String> greet1 = new ArrayList<>();
+           greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
+           full_greeting += RandomCase(greet1);
+           
+        ArrayList<String> greet2 = new ArrayList<>();
+           greet2.add("What would you like to hear about?"); greet2.add("What interests you?"); greet2.add("What shall I tell you?"); greet2.add("What do you need?"); 
+           full_greeting += RandomCase(greet2);
+           
+           return full_greeting; 
+    }
+    public static String randomNobleGreet(String kingName) {
+        String full_greeting = "Noble: ";
+        ArrayList<String> greet1 = new ArrayList<>();
+           greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
+           full_greeting += RandomCase(greet1);
+           
+        ArrayList<String> greet2 = new ArrayList<>();
+           greet2.add("What would you like to hear about?"); greet2.add("What interests you?"); greet2.add("What shall I tell you?"); greet2.add("What do you need?"); 
+           full_greeting += RandomCase(greet2);
+           
+           return full_greeting; 
+    }
+    
+    
+    //TRADING DISTRICT 
+    //==========================================
+    public static String randomMerchantGreet(String kingName) {
+        String full_greeting = "Merchant: ";
+        ArrayList<String> greet1 = new ArrayList<>();
+           greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
+           full_greeting += RandomCase(greet1);
+           
+        ArrayList<String> greet2 = new ArrayList<>();
+           greet2.add("What would you like to hear about?"); greet2.add("What interests you?"); greet2.add("What shall I tell you?"); greet2.add("What do you need?"); 
+           full_greeting += RandomCase(greet2);
+           
+           return full_greeting; 
+    }
+
+    
+    
+    
+    
     
         
     }

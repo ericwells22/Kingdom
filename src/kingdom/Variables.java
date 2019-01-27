@@ -8,8 +8,10 @@ public class Variables {
 
     
     //SYSTEM VARIABLES
-    public static volatile int K_DayNum;
-
+    public static volatile String nameKing,nameKingdom;
+    
+    public static volatile int K_DayNum, Difficulty;
+    public static volatile long K_DayMS;
     
     
     // BASE VARIABLES
@@ -65,8 +67,10 @@ public class Variables {
     //OUTER CITY VARIABLES
     //===================================================================================================================    
     
-    public static volatile int agStatus;
-    public static volatile int weatherStat;
+    public static volatile int agStatus; //0-100, higher is better efficiency & technological advance for agriculture, which assists foodYield.
+    public static volatile int weatherStat; //0-4 versions of weather as seen in actions.OuterCity.getWeather(). Influences agriculture.
+    public static volatile int foodYield; //output of farms in food (2500s of calories / feeds 1 person per day). Another source of food is foreign trade.
+    public static volatile int foodQuality; //0-100, higher is better quality food. May curtail foodYield in long-term due to disease. 
     
     
     //TRADING DISTRICT VARIABLES
