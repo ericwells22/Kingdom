@@ -77,5 +77,7 @@ public class Variables {
     
     //QUARTER OF WEALTH VARIABLES
     //=================================================================================================================== 
+    public static volatile int loyalty;
+    public static volatile int ownership; //rice of the outer city
     
 }
