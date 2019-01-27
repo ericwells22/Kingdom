@@ -4,20 +4,20 @@ import kingdom.Variables;
 
 public class InnerCity {
     
-    public String getEmploymentStat() {
+    public static String getEmploymentStat() {
         return Integer.toString(Variables.employmentStat);
     }
     
-    public String getPovertyStat() {
+    public static String getPovertyStat() {
         return Integer.toString(Variables.povertyStat);
     }
     
-    public String getCrimeStat() {
+    public static String getCrimeStat() {
         return Integer.toString(Variables.povertyStat);
     }
 
-    public void GiveToPoor(double amt) {
-        
+    public static void GiveToPoor(double amt) {
+        System.out.println("GIVING " +amt);
         Variables.K_royalGold -= amt;
 
         //SUPER MAD POOR Take the money and spit on you - HIGH chance to steal more
