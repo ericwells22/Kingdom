@@ -65,16 +65,17 @@ public class Variables {
     //OUTER CITY VARIABLES
     //===================================================================================================================    
     
-    
+    public static volatile int agStatus;
+    public static volatile int weatherStat;
     
     
     //TRADING DISTRICT VARIABLES
     //===================================================================================================================    
     
+    public static volatile int tradingCapability;
     
     
     //QUARTER OF WEALTH VARIABLES
     //=================================================================================================================== 
-    public static volatile int weatherStat;
     
 }

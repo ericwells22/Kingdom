@@ -41,6 +41,32 @@ public class TextUpdates {
            
            
         }
+    
+    public static String randomFarmerGreet(String kingName) {
+        String full_greeting = "City Farmer: ";
+        ArrayList<String> greet1 = new ArrayList<>();
+           greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
+           full_greeting += RandomCase(greet1);
+           
+        ArrayList<String> greet2 = new ArrayList<>();
+           greet2.add("What would you like to hear about?"); greet2.add("What interests you?"); greet2.add("What shall I tell you?"); greet2.add("What do you need?"); 
+           full_greeting += RandomCase(greet2);
+           
+           return full_greeting; 
+    }
+    
+    public static String randomMerchantGreet(String kingName) {
+        String full_greeting = "Merchant: ";
+        ArrayList<String> greet1 = new ArrayList<>();
+           greet1.add("Hello sire! "); greet1.add("Greetings your Majesty! "); greet1.add("Greetings your Honor! "); greet1.add("Hello there, Honorary " +kingName +"! "); greet1.add("My Lord! ");
+           full_greeting += RandomCase(greet1);
+           
+        ArrayList<String> greet2 = new ArrayList<>();
+           greet2.add("What would you like to hear about?"); greet2.add("What interests you?"); greet2.add("What shall I tell you?"); greet2.add("What do you need?"); 
+           full_greeting += RandomCase(greet2);
+           
+           return full_greeting; 
+    }
     public static String PoorPersonDialogue(String kingName, int howLarge, boolean thanks){ 
         
         String dialogue = "Lowly Peasant: ";

@@ -182,8 +182,21 @@ public class GameSetup extends javax.swing.JFrame {
         kGame.setBounds(this.getX()-295,this.getY()-130,1200,780);
         kGame.setVisible(true);
         
-        String king = kingBox.getText(); king = king.toLowerCase(); king = king.substring(0, 1).toUpperCase() + king.substring(1).toLowerCase();
-        String kingdom = kingdomBox.getText(); kingdom = kingdom.toLowerCase(); kingdom = kingdom.substring(0, 1).toUpperCase() + kingdom.substring(1).toLowerCase();
+        
+        String king = kingBox.getText();
+        if(king.length()>0) {
+            king = kingBox.getText(); king = king.toLowerCase(); king = king.substring(0, 1).toUpperCase() + king.substring(1).toLowerCase();
+        } else {
+            king = "Bob";
+        }
+        
+        
+        String kingdom = kingdomBox.getText(); 
+        if(kingdom.length()>0) {
+                    kingdom = kingdom.toLowerCase(); kingdom = kingdom.substring(0, 1).toUpperCase() + kingdom.substring(1).toLowerCase();
+        } else {
+            kingdom = "BobLand";
+        }
  
         
         kGame.nameKing = king;

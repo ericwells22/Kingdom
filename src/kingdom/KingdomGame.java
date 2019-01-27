@@ -5,7 +5,6 @@
  */
 package kingdom;
 
-
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
@@ -18,6 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import kingdom.actions.InnerCity;
+import kingdom.actions.OuterCity;
+import kingdom.actions.Trading;
 
 /**
  *
@@ -29,34 +30,30 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
      * Creates new form KingdomFrame
      */
     public KingdomGame() {
-        
+
         initComponents();
         this.addMouseListener(this);
 
         CursorSet(false);
-        
+
         InnerCityGlow.setVisible(false);
         PalaceGlow.setVisible(false);
         TradeDistrictGlow.setVisible(false);
         QuarterWealthGlow.setVisible(false);
         TowerGlow.setVisible(false);
-        
-        
+
         PalaceLayout.setVisible(false);
-        
+
         InnerCityLayout.setVisible(false);
         OuterCityLayout.setVisible(false);
         QuarterOfWealth.setVisible(false);
         TradingDistrictLayout.setVisible(false);
 
-        
-        waitThread.start(); GameLoop.start();
-        
-        
+        waitThread.start();
+        GameLoop.start();
+
         ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1, DayLabel);
-        
-       
-        
+
     }
 
     /**
@@ -69,19 +66,24 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
     private void initComponents() {
 
         TradingDistrictLayout = new javax.swing.JPanel();
-        backArrow5 = new javax.swing.JButton();
+        tdBackArrow = new javax.swing.JButton();
+        capabilitiesButton = new javax.swing.JButton();
+        tdScrollPane = new javax.swing.JScrollPane();
+        tdTextWindow = new javax.swing.JTextArea();
+        opinionButton = new javax.swing.JButton();
+        talkMerchantButton = new javax.swing.JButton();
         backgroundTrading = new javax.swing.JLabel();
         InnerCityLayout = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TextWindow = new javax.swing.JTextArea();
+        icScrollPane = new javax.swing.JScrollPane();
+        icTextWindow = new javax.swing.JTextArea();
         giveMoneyValidate = new javax.swing.JButton();
         moneyAmountBox = new javax.swing.JTextField();
         talkGuardButton = new javax.swing.JButton();
         giveMoneyButton = new javax.swing.JButton();
         employButton = new javax.swing.JButton();
         povertyButton = new javax.swing.JButton();
+        icBackArrow = new javax.swing.JButton();
         crimeButton = new javax.swing.JButton();
-        backArrow2 = new javax.swing.JButton();
         backgroundInnerCity = new javax.swing.JLabel();
         PalaceLayout = new javax.swing.JPanel();
         backArrow1 = new javax.swing.JButton();
@@ -117,8 +119,13 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         backArrow4 = new javax.swing.JButton();
         backgroundQuarter = new javax.swing.JLabel();
         OuterCityLayout = new javax.swing.JPanel();
-        backArrow3 = new javax.swing.JButton();
+        ocBackArrow = new javax.swing.JButton();
         backgroundOuterCity = new javax.swing.JLabel();
+        agButton = new javax.swing.JButton();
+        ocScrollPane = new javax.swing.JScrollPane();
+        ocTextWindow = new javax.swing.JTextArea();
+        weatherButton = new javax.swing.JButton();
+        talkFarmerButton = new javax.swing.JButton();
         loadingScreen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,17 +138,75 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         TradingDistrictLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
         TradingDistrictLayout.setLayout(null);
 
-        backArrow5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
-        backArrow5.setContentAreaFilled(false);
-        backArrow5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
-        backArrow5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
-        backArrow5.addActionListener(new java.awt.event.ActionListener() {
+        tdBackArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        tdBackArrow.setContentAreaFilled(false);
+        tdBackArrow.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        tdBackArrow.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        tdBackArrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backArrow5ActionPerformed(evt);
+                tdBackArrowActionPerformed(evt);
             }
         });
-        TradingDistrictLayout.add(backArrow5);
-        backArrow5.setBounds(30, 20, 80, 60);
+        TradingDistrictLayout.add(tdBackArrow);
+        tdBackArrow.setBounds(30, 20, 80, 60);
+
+        capabilitiesButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        capabilitiesButton.setText("How are we doing");
+        capabilitiesButton.setFocusable(false);
+        capabilitiesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                capabilitiesButtonActionPerformed(evt);
+            }
+        });
+        TradingDistrictLayout.add(capabilitiesButton);
+        capabilitiesButton.setBounds(340, 530, 190, 70);
+        capabilitiesButton.setVisible(false);
+
+        tdScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        tdScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        tdScrollPane.setFocusable(false);
+        tdScrollPane.setOpaque(false);
+        tdScrollPane.setRequestFocusEnabled(false);
+        tdScrollPane.setWheelScrollingEnabled(false);
+
+        tdTextWindow.setEditable(false);
+        tdTextWindow.setColumns(20);
+        tdTextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 24)); // NOI18N
+        tdTextWindow.setRows(500);
+        tdTextWindow.setWrapStyleWord(true);
+        tdTextWindow.setAutoscrolls(false);
+        tdTextWindow.setFocusable(false);
+        tdTextWindow.setOpaque(false);
+        tdTextWindow.setRequestFocusEnabled(false);
+        tdTextWindow.setVerifyInputWhenFocusTarget(false);
+        tdScrollPane.setViewportView(tdTextWindow);
+        icTextWindow.setLineWrap(true);
+
+        TradingDistrictLayout.add(tdScrollPane);
+        tdScrollPane.setBounds(340, 300, 580, 210);
+
+        opinionButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opinionButton.setText("Give me your opinion");
+        opinionButton.setFocusable(false);
+        opinionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opinionButtonActionPerformed(evt);
+            }
+        });
+        TradingDistrictLayout.add(opinionButton);
+        opinionButton.setBounds(710, 530, 210, 70);
+        opinionButton.setVisible(false);
+
+        talkMerchantButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        talkMerchantButton.setText("Talk to Merchant");
+        talkMerchantButton.setFocusable(false);
+        talkMerchantButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                talkMerchantButtonActionPerformed(evt);
+            }
+        });
+        TradingDistrictLayout.add(talkMerchantButton);
+        talkMerchantButton.setBounds(530, 530, 210, 70);
 
         backgroundTrading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/trading_district/trading_district_GIF org.gif"))); // NOI18N
         backgroundTrading.setMaximumSize(new java.awt.Dimension(1200, 780));
@@ -154,28 +219,28 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         InnerCityLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
         InnerCityLayout.setLayout(null);
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        jScrollPane1.setFocusable(false);
-        jScrollPane1.setOpaque(false);
-        jScrollPane1.setRequestFocusEnabled(false);
-        jScrollPane1.setWheelScrollingEnabled(false);
+        icScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        icScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        icScrollPane.setFocusable(false);
+        icScrollPane.setOpaque(false);
+        icScrollPane.setRequestFocusEnabled(false);
+        icScrollPane.setWheelScrollingEnabled(false);
 
-        TextWindow.setEditable(false);
-        TextWindow.setColumns(20);
-        TextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 24)); // NOI18N
-        TextWindow.setRows(500);
-        TextWindow.setWrapStyleWord(true);
-        TextWindow.setAutoscrolls(false);
-        TextWindow.setFocusable(false);
-        TextWindow.setOpaque(false);
-        TextWindow.setRequestFocusEnabled(false);
-        TextWindow.setVerifyInputWhenFocusTarget(false);
-        jScrollPane1.setViewportView(TextWindow);
-        TextWindow.setLineWrap(true);
+        icTextWindow.setEditable(false);
+        icTextWindow.setColumns(20);
+        icTextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 24)); // NOI18N
+        icTextWindow.setRows(500);
+        icTextWindow.setWrapStyleWord(true);
+        icTextWindow.setAutoscrolls(false);
+        icTextWindow.setFocusable(false);
+        icTextWindow.setOpaque(false);
+        icTextWindow.setRequestFocusEnabled(false);
+        icTextWindow.setVerifyInputWhenFocusTarget(false);
+        icScrollPane.setViewportView(icTextWindow);
+        icTextWindow.setLineWrap(true);
 
-        InnerCityLayout.add(jScrollPane1);
-        jScrollPane1.setBounds(340, 300, 580, 210);
+        InnerCityLayout.add(icScrollPane);
+        icScrollPane.setBounds(340, 300, 580, 210);
 
         giveMoneyValidate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         giveMoneyValidate.setText("Give Money");
@@ -256,6 +321,19 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         povertyButton.setBounds(340, 530, 160, 70);
         povertyButton.setVisible(false);
 
+        icBackArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        icBackArrow.setContentAreaFilled(false);
+        icBackArrow.setFocusable(false);
+        icBackArrow.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        icBackArrow.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        icBackArrow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                icBackArrowActionPerformed(evt);
+            }
+        });
+        InnerCityLayout.add(icBackArrow);
+        icBackArrow.setBounds(30, 20, 80, 60);
+
         crimeButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         crimeButton.setText("How's Crime?");
         crimeButton.setFocusable(false);
@@ -267,19 +345,6 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         InnerCityLayout.add(crimeButton);
         crimeButton.setBounds(570, 530, 140, 70);
         crimeButton.setVisible(false);
-
-        backArrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
-        backArrow2.setContentAreaFilled(false);
-        backArrow2.setFocusable(false);
-        backArrow2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
-        backArrow2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
-        backArrow2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backArrow2ActionPerformed(evt);
-            }
-        });
-        InnerCityLayout.add(backArrow2);
-        backArrow2.setBounds(30, 20, 80, 60);
 
         backgroundInnerCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/inner_city/inner_city_GIF.gif"))); // NOI18N
         InnerCityLayout.add(backgroundInnerCity);
@@ -608,17 +673,17 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         OuterCityLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
         OuterCityLayout.setLayout(null);
 
-        backArrow3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
-        backArrow3.setContentAreaFilled(false);
-        backArrow3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
-        backArrow3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
-        backArrow3.addActionListener(new java.awt.event.ActionListener() {
+        ocBackArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
+        ocBackArrow.setContentAreaFilled(false);
+        ocBackArrow.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        ocBackArrow.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
+        ocBackArrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backArrow3ActionPerformed(evt);
+                ocBackArrowActionPerformed(evt);
             }
         });
-        OuterCityLayout.add(backArrow3);
-        backArrow3.setBounds(30, 20, 80, 60);
+        OuterCityLayout.add(ocBackArrow);
+        ocBackArrow.setBounds(30, 20, 80, 60);
 
         backgroundOuterCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/outer_city/outer_city_GIF.gif"))); // NOI18N
         backgroundOuterCity.setMaximumSize(new java.awt.Dimension(1200, 780));
@@ -626,6 +691,64 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         backgroundOuterCity.setPreferredSize(new java.awt.Dimension(1200, 780));
         OuterCityLayout.add(backgroundOuterCity);
         backgroundOuterCity.setBounds(0, 0, 1200, 780);
+
+        agButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agButton.setText("How's Poverty?");
+        agButton.setFocusable(false);
+        agButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agButtonActionPerformed(evt);
+            }
+        });
+        OuterCityLayout.add(agButton);
+        agButton.setBounds(340, 530, 160, 70);
+        agButton.setVisible(false);
+
+        ocScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ocScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        ocScrollPane.setFocusable(false);
+        ocScrollPane.setOpaque(false);
+        ocScrollPane.setRequestFocusEnabled(false);
+        ocScrollPane.setWheelScrollingEnabled(false);
+
+        ocTextWindow.setEditable(false);
+        ocTextWindow.setColumns(20);
+        ocTextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 24)); // NOI18N
+        ocTextWindow.setRows(500);
+        ocTextWindow.setWrapStyleWord(true);
+        ocTextWindow.setAutoscrolls(false);
+        ocTextWindow.setFocusable(false);
+        ocTextWindow.setOpaque(false);
+        ocTextWindow.setRequestFocusEnabled(false);
+        ocTextWindow.setVerifyInputWhenFocusTarget(false);
+        ocScrollPane.setViewportView(ocTextWindow);
+        icTextWindow.setLineWrap(true);
+
+        OuterCityLayout.add(ocScrollPane);
+        ocScrollPane.setBounds(340, 300, 580, 210);
+
+        weatherButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        weatherButton.setText("Employment?");
+        weatherButton.setFocusable(false);
+        weatherButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                weatherButtonActionPerformed(evt);
+            }
+        });
+        OuterCityLayout.add(weatherButton);
+        weatherButton.setBounds(780, 530, 140, 70);
+        weatherButton.setVisible(false);
+
+        talkFarmerButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        talkFarmerButton.setText("Talk to Royal Guard");
+        talkFarmerButton.setFocusable(false);
+        talkFarmerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                talkFarmerButtonActionPerformed(evt);
+            }
+        });
+        OuterCityLayout.add(talkFarmerButton);
+        talkFarmerButton.setBounds(410, 530, 210, 70);
 
         loadingScreen.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
         loadingScreen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -748,50 +871,47 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
     }//GEN-LAST:event_hovGlow2MouseExited
 
     private void hovGlow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlow2ActionPerformed
-SwitchPanel(ZoomedLayout1,ZoomedLayout2);
+        SwitchPanel(ZoomedLayout1, ZoomedLayout2);
 
     }//GEN-LAST:event_hovGlow2ActionPerformed
 
     private void hovGlowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlowActionPerformed
-SwitchPanel(ZoomedLayout1,ZoomedLayout2);
+        SwitchPanel(ZoomedLayout1, ZoomedLayout2);
     }//GEN-LAST:event_hovGlowActionPerformed
 
     private void hovGlow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hovGlow1ActionPerformed
-SwitchPanel(ZoomedLayout1,ZoomedLayout2);
+        SwitchPanel(ZoomedLayout1, ZoomedLayout2);
 
     }//GEN-LAST:event_hovGlow1ActionPerformed
 
     private void PalaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PalaceActionPerformed
 
-SwitchPanel(ZoomedLayout2,PalaceLayout);
+        SwitchPanel(ZoomedLayout2, PalaceLayout);
 
     }//GEN-LAST:event_PalaceActionPerformed
 
     private void PalaceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PalaceMouseEntered
-PalaceGlow.setVisible(true);
+        PalaceGlow.setVisible(true);
     }//GEN-LAST:event_PalaceMouseEntered
 
     private void PalaceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PalaceMouseExited
-PalaceGlow.setVisible(false);
+        PalaceGlow.setVisible(false);
     }//GEN-LAST:event_PalaceMouseExited
 
     private void InnerCity1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity1MouseEntered
 
-        
-        
         InnerCityGlow.setVisible(true);
     }//GEN-LAST:event_InnerCity1MouseEntered
 
     private void InnerCity1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity1MouseExited
 
 
-
 InnerCityGlow.setVisible(false);InnerCityGlow.setVisible(false);    }//GEN-LAST:event_InnerCity1MouseExited
 
     private void InnerCity1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InnerCity1ActionPerformed
 
-        SwitchPanel(ZoomedLayout2,InnerCityLayout);
-   
+        SwitchPanel(ZoomedLayout2, InnerCityLayout);
+
     }//GEN-LAST:event_InnerCity1ActionPerformed
 
     private void InnerCity2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity2MouseEntered
@@ -801,20 +921,20 @@ InnerCityGlow.setVisible(true);    }//GEN-LAST:event_InnerCity2MouseEntered
 InnerCityGlow.setVisible(false);    }//GEN-LAST:event_InnerCity2MouseExited
 
     private void InnerCity2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InnerCity2ActionPerformed
-        
-        SwitchPanel(ZoomedLayout2,InnerCityLayout);
+
+        SwitchPanel(ZoomedLayout2, InnerCityLayout);
 
     }//GEN-LAST:event_InnerCity2ActionPerformed
 
     private void Quarter1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Quarter1MouseEntered
-QuarterWealthGlow.setVisible(true);
+        QuarterWealthGlow.setVisible(true);
     }//GEN-LAST:event_Quarter1MouseEntered
 
     private void Quarter1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Quarter1MouseExited
 QuarterWealthGlow.setVisible(false);    }//GEN-LAST:event_Quarter1MouseExited
 
     private void Quarter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Quarter1ActionPerformed
-SwitchPanel(ZoomedLayout2,QuarterOfWealth);
+        SwitchPanel(ZoomedLayout2, QuarterOfWealth);
 
     }//GEN-LAST:event_Quarter1ActionPerformed
 
@@ -825,7 +945,7 @@ QuarterWealthGlow.setVisible(true);    }//GEN-LAST:event_Quarter2MouseEntered
 QuarterWealthGlow.setVisible(false);    }//GEN-LAST:event_Quarter2MouseExited
 
     private void Quarter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Quarter2ActionPerformed
-SwitchPanel(ZoomedLayout2,QuarterOfWealth);
+        SwitchPanel(ZoomedLayout2, QuarterOfWealth);
 
     }//GEN-LAST:event_Quarter2ActionPerformed
 
@@ -836,7 +956,7 @@ TradeDistrictGlow.setVisible(true);    }//GEN-LAST:event_Trade1MouseEntered
 TradeDistrictGlow.setVisible(false);    }//GEN-LAST:event_Trade1MouseExited
 
     private void Trade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Trade1ActionPerformed
-SwitchPanel(ZoomedLayout2, TradingDistrictLayout);
+        SwitchPanel(ZoomedLayout2, TradingDistrictLayout);
 
     }//GEN-LAST:event_Trade1ActionPerformed
 
@@ -849,258 +969,293 @@ TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
     private void Tower1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tower1ActionPerformed
 
 
-
     }//GEN-LAST:event_Tower1ActionPerformed
 
     private void backArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrowActionPerformed
-SwitchPanel(ZoomedLayout2,ZoomedLayout1);
+        SwitchPanel(ZoomedLayout2, ZoomedLayout1);
     }//GEN-LAST:event_backArrowActionPerformed
 
     private void toggleScrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleScrollActionPerformed
-ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1,DayLabel);
+        ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1, DayLabel);
 
     }//GEN-LAST:event_toggleScrollActionPerformed
 
     private void backArrow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow1ActionPerformed
-SwitchPanel(PalaceLayout,ZoomedLayout2);
+        SwitchPanel(PalaceLayout, ZoomedLayout2);
     }//GEN-LAST:event_backArrow1ActionPerformed
 
-    private void backArrow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow2ActionPerformed
-        
-SwitchPanel(InnerCityLayout,ZoomedLayout2);
+    private void icBackArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icBackArrowActionPerformed
 
-moneyAmountBox.setVisible(false); giveMoneyValidate.setVisible(false);
-talkGuardButton.setVisible(true); giveMoneyButton.setVisible(true); moneyAmountBox.setVisible(false); 
-employButton.setVisible(false); povertyButton.setVisible(false); crimeButton.setVisible(false);
-TextWindow.setText("");
+        SwitchPanel(InnerCityLayout, ZoomedLayout2);
+
+        moneyAmountBox.setVisible(false);
+        giveMoneyValidate.setVisible(false);
+        talkGuardButton.setVisible(true);
+        giveMoneyButton.setVisible(true);
+        moneyAmountBox.setVisible(false);
+        employButton.setVisible(false);
+        povertyButton.setVisible(false);
+        crimeButton.setVisible(false);
+        icTextWindow.setText("");
 
 
+    }//GEN-LAST:event_icBackArrowActionPerformed
 
-
-
-    }//GEN-LAST:event_backArrow2ActionPerformed
-
-    private void backArrow3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow3ActionPerformed
-SwitchPanel(OuterCityLayout,ZoomedLayout2);
-    }//GEN-LAST:event_backArrow3ActionPerformed
+    private void ocBackArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ocBackArrowActionPerformed
+        SwitchPanel(OuterCityLayout, ZoomedLayout2);
+        agButton.setVisible(false);
+        weatherButton.setVisible(false);
+        talkFarmerButton.setVisible(true);
+    }//GEN-LAST:event_ocBackArrowActionPerformed
 
     private void backArrow4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow4ActionPerformed
-SwitchPanel(QuarterOfWealth,ZoomedLayout2);
+        SwitchPanel(QuarterOfWealth, ZoomedLayout2);
     }//GEN-LAST:event_backArrow4ActionPerformed
 
-    private void backArrow5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow5ActionPerformed
-SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
-
-    }//GEN-LAST:event_backArrow5ActionPerformed
+    private void tdBackArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdBackArrowActionPerformed
+        SwitchPanel(TradingDistrictLayout, ZoomedLayout2);
+        capabilitiesButton.setVisible(false);
+        opinionButton.setVisible(false);
+        talkMerchantButton.setVisible(true);
+    }//GEN-LAST:event_tdBackArrowActionPerformed
 
     private void talkGuardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_talkGuardButtonActionPerformed
 
-        TextWindow.setText("");
-        employButton.setVisible(true); povertyButton.setVisible(true); crimeButton.setVisible(true);
+        icTextWindow.setText("");
+        employButton.setVisible(true);
+        povertyButton.setVisible(true);
+        crimeButton.setVisible(true);
 
-        TextWindow.setText(text.RandomGuardGreet(nameKing));
-        talkGuardButton.setVisible(false); giveMoneyButton.setVisible(false);
-        
+        icTextWindow.setText(text.RandomGuardGreet(nameKing));
+        talkGuardButton.setVisible(false);
+        giveMoneyButton.setVisible(false);
+
 
     }//GEN-LAST:event_talkGuardButtonActionPerformed
 
     private void giveMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyButtonActionPerformed
         talkGuardButton.setVisible(false);
         giveMoneyButton.setVisible(false);
-        
-        moneyAmountBox.setVisible(true); 
+
+        moneyAmountBox.setVisible(true);
         giveMoneyValidate.setVisible(true);
-        
-        TextWindow.append(TextUpdates.PoorPersonDialogue(nameKing, 0, false)+"\n");
+
+        icTextWindow.append(TextUpdates.PoorPersonDialogue(nameKing, 0, false) + "\n");
         moneyAmountBox.setText("0.00");
-        
+
     }//GEN-LAST:event_giveMoneyButtonActionPerformed
 
     private void giveMoneyValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyValidateActionPerformed
-        try{
-        InnerCity.GiveToPoor(Double.parseDouble(moneyAmountBox.getText()));
-        
-                moneyAmountBox.setVisible(false);
-        giveMoneyValidate.setVisible(false);
-        
-                int howBig = 0; if(Double.parseDouble(moneyAmountBox.getText())>1.00){howBig=3;} if(Double.parseDouble(moneyAmountBox.getText())>0.30&&Double.parseDouble(moneyAmountBox.getText())<=1.00){howBig=2;} if(Double.parseDouble(moneyAmountBox.getText())<=0.3){howBig=1;} 
-        TextWindow.append(TextUpdates.PoorPersonDialogue(nameKing, howBig, true)+"\n");
-                
-        giveMoneyButton.setVisible(true); talkGuardButton.setVisible(true);
+        try {
+            InnerCity.GiveToPoor(Double.parseDouble(moneyAmountBox.getText()));
 
-                    moneyAmountBox.setText("0.00");
-        }
-        catch(Exception e){ 
+            moneyAmountBox.setVisible(false);
+            giveMoneyValidate.setVisible(false);
+
+            int howBig = 0;
+            if (Double.parseDouble(moneyAmountBox.getText()) > 1.00) {
+                howBig = 3;
+            }
+            if (Double.parseDouble(moneyAmountBox.getText()) > 0.30 && Double.parseDouble(moneyAmountBox.getText()) <= 1.00) {
+                howBig = 2;
+            }
+            if (Double.parseDouble(moneyAmountBox.getText()) <= 0.3) {
+                howBig = 1;
+            }
+            icTextWindow.append(TextUpdates.PoorPersonDialogue(nameKing, howBig, true) + "\n");
+
+            giveMoneyButton.setVisible(true);
+            talkGuardButton.setVisible(true);
+
+            moneyAmountBox.setText("0.00");
+        } catch (Exception e) {
 
 //NOT FORMATTED CORRECTLY !
-
-                  moneyAmountBox.setText("0.00");           
+            moneyAmountBox.setText("0.00");
         }
-        
-        
+
 
     }//GEN-LAST:event_giveMoneyValidateActionPerformed
 
     private void povertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_povertyButtonActionPerformed
-TextWindow.append("\n"+InnerCity.getPovertyStat());
-        
+        icTextWindow.append("\n" + InnerCity.getPovertyStat());
+
     }//GEN-LAST:event_povertyButtonActionPerformed
 
     private void employButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employButtonActionPerformed
-TextWindow.append("\n"+InnerCity.getEmploymentStat());
+        icTextWindow.append("\n" + InnerCity.getEmploymentStat());
 
     }//GEN-LAST:event_employButtonActionPerformed
 
     private void crimeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crimeButtonActionPerformed
-TextWindow.append("\n"+InnerCity.getCrimeStat());
+        icTextWindow.append("\n" + InnerCity.getCrimeStat());
 
     }//GEN-LAST:event_crimeButtonActionPerformed
-    
-    public void CheckTextBoxes(){
-        try{
-            
+
+    private void agButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agButtonActionPerformed
+        ocTextWindow.append("\nThe agriculture is " + Variables.agStatus);
+    }//GEN-LAST:event_agButtonActionPerformed
+
+    private void weatherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weatherButtonActionPerformed
+        // TODO add your handling code here:
+        ocTextWindow.append("\nIt has been " + OuterCity.getWeather() + " lately");
+    }//GEN-LAST:event_weatherButtonActionPerformed
+
+    private void talkFarmerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_talkFarmerButtonActionPerformed
+        ocTextWindow.setText(TextUpdates.randomFarmerGreet(nameKing));
+        agButton.setVisible(true);
+        weatherButton.setVisible(true);
+        talkFarmerButton.setVisible(false);
+    }//GEN-LAST:event_talkFarmerButtonActionPerformed
+
+    private void capabilitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capabilitiesButtonActionPerformed
+        // TODO add your handling code here:
+        tdTextWindow.append("\nOur trading capability is " + Variables.tradingCapability);
+    }//GEN-LAST:event_capabilitiesButtonActionPerformed
+
+    private void opinionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opinionButtonActionPerformed
+        tdTextWindow.append("\n"+Trading.getOpinion());
+    }//GEN-LAST:event_opinionButtonActionPerformed
+
+    private void talkMerchantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_talkMerchantButtonActionPerformed
+        // TODO add your handling code here:
+        tdTextWindow.setText(TextUpdates.randomMerchantGreet(nameKing));
+        capabilitiesButton.setVisible(true);
+        opinionButton.setVisible(true);
+        talkMerchantButton.setVisible(false);
+    }//GEN-LAST:event_talkMerchantButtonActionPerformed
+
+    public void CheckTextBoxes() {
+        try {
+
             double input = Double.parseDouble(moneyAmountBox.getText());
-            
-                        if(input<0||input>9.99){moneyAmountBox.setText("0"); moneyAmountBox.setText("0.00");}
-        
 
-        
-        
-        }catch(Exception e){
-            
-        
+            if (input < 0 || input > 9.99) {
+                moneyAmountBox.setText("0");
+                moneyAmountBox.setText("0.00");
+            }
+
+        } catch (Exception e) {
+
         }
-        
+
     }
-    
-    
+
     GameSetup gamesetup = new GameSetup();
-TextUpdates text = new TextUpdates();
+    TextUpdates text = new TextUpdates();
 
-boolean scrollIn = false;
+    boolean scrollIn = false;
 
-String nameKingdom;
-String nameKing;
-int Difficulty; 
-        
+    String nameKingdom;
+    String nameKing;
+    int Difficulty;
 
+    public void setScrollTitle() {
+        scrollTitle.setText(nameKingdom);
+    }
 
+    public void ToggleScroll(JLabel title, JLabel scrollout, JLabel scrollin, JLabel scrollbar, JLabel dayNum) {
+        if (scrollIn == false) {
+            scrollIn = true;
+            scrollout.setVisible(false);
+            scrollbar.setVisible(false);
+            title.setVisible(false);
+            dayNum.setVisible(false);
 
-public void setScrollTitle(){
-    scrollTitle.setText(nameKingdom);
-}
+            scrollin.setVisible(true);
+        } else {
+            scrollIn = false;
+            scrollout.setVisible(true);
+            scrollbar.setVisible(true);
+            title.setVisible(true);
+            dayNum.setVisible(true);
 
-
-
-public void ToggleScroll(JLabel title, JLabel scrollout, JLabel scrollin, JLabel scrollbar, JLabel dayNum){
-    if(scrollIn==false){
-    scrollIn=true;
-    scrollout.setVisible(false); scrollbar.setVisible(false); title.setVisible(false); dayNum.setVisible(false);
-    
-    scrollin.setVisible(true);  
-} else{
-    scrollIn=false;
-    scrollout.setVisible(true); scrollbar.setVisible(true); title.setVisible(true); dayNum.setVisible(true);
-    
-    scrollin.setVisible(false);
-}
-}
-public void SwitchPanel(JPanel from, JPanel to){
-
-    
-            from.setVisible(false);
-            int rand = 250;
-
-            
-            waiting = rand;
-            waitDone = 1;
-              
-            jReady = to;
-          
-    
-}
-
-
-
-
-Thread waitThread = new Thread(new Runnable() {
-   
- public void run() {   
-        
-                
-        try {     
-            while(true){
-                
-                
-            if(waiting>0){
-                
-                loadingScreen.setVisible(true);                 
-            Thread.sleep(waiting);  
-            waiting=0;
-            if(waitDone==1){ loadingScreen.setVisible(false); jReady.setVisible(true); waitDone=0;}
-            
-                
-
-            }
-            
-            
-            }
-             } catch (InterruptedException ex) {
-            Logger.getLogger(KingdomMenu.class.getName()).log(Level.SEVERE, null, ex);
+            scrollin.setVisible(false);
         }
-        
-    }        
+    }
 
+    public void SwitchPanel(JPanel from, JPanel to) {
 
+        from.setVisible(false);
+        int rand = 250;
 
-});    
+        waiting = rand;
+        waitDone = 1;
 
-Thread GameLoop = new Thread(new Runnable() {
-   
- public void run() {   
-        
-                
-     while(true){
-         try { 
-             Thread.sleep(1000);      //SLIGHT DELAY BEFORE UPDATING GAME COMPONENTS
-         } catch (InterruptedException ex) {
-             Logger.getLogger(KingdomGame.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         Variables.K_DayNum++;
-         
-         CheckTextBoxes();
-         
-         DayLabel.setText("Day "+Variables.K_DayNum);
-         
-         
-     }
-        
-    }        
+        jReady = to;
 
-    
+    }
 
+    Thread waitThread = new Thread(new Runnable() {
 
-});    
+        public void run() {
 
+            try {
+                while (true) {
 
+                    if (waiting > 0) {
 
+                        loadingScreen.setVisible(true);
+                        Thread.sleep(waiting);
+                        waiting = 0;
+                        if (waitDone == 1) {
+                            loadingScreen.setVisible(false);
+                            jReady.setVisible(true);
+                            waitDone = 0;
+                        }
 
-public void CursorSet(boolean down){
-    String path = "";
-    if(down==false){path = "/kingdom/images/misc/med_cursor.png";}
-    if(down==true){ path = "/kingdom/images/misc/med_cursor.png"; }
-    
-    setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-new ImageIcon(getClass().getResource(path)).getImage(),
-new Point(0,0),"custom cursor")); 
-    
-}
+                    }
+
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(KingdomMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    });
+
+    Thread GameLoop = new Thread(new Runnable() {
+
+        public void run() {
+
+            while (true) {
+                try {
+                    Thread.sleep(1000);      //SLIGHT DELAY BEFORE UPDATING GAME COMPONENTS
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(KingdomGame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Variables.K_DayNum++;
+
+                CheckTextBoxes();
+
+                DayLabel.setText("Day " + Variables.K_DayNum);
+
+            }
+
+        }
+
+    });
+
+    public void CursorSet(boolean down) {
+        String path = "";
+        if (down == false) {
+            path = "/kingdom/images/misc/med_cursor.png";
+        }
+        if (down == true) {
+            path = "/kingdom/images/misc/med_cursor.png";
+        }
+
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+                new ImageIcon(getClass().getResource(path)).getImage(),
+                new Point(0, 0), "custom cursor"));
+
+    }
     public volatile int waiting = 0;
     public volatile int waitDone = 0;
-    
-    
+
     public volatile JPanel jReady = null;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DayLabel;
     private javax.swing.JButton InnerCity1;
@@ -1117,7 +1272,6 @@ new Point(0,0),"custom cursor"));
     private javax.swing.JLabel QuarterWealthGlow;
     private javax.swing.JLabel ScrollIn;
     private javax.swing.JLabel ScrollOut;
-    private javax.swing.JTextArea TextWindow;
     private javax.swing.JButton Tower1;
     private javax.swing.JLabel TowerGlow;
     private javax.swing.JButton Trade1;
@@ -1125,12 +1279,10 @@ new Point(0,0),"custom cursor"));
     private javax.swing.JPanel TradingDistrictLayout;
     private javax.swing.JPanel ZoomedLayout1;
     private javax.swing.JPanel ZoomedLayout2;
+    private javax.swing.JButton agButton;
     private javax.swing.JButton backArrow;
     private javax.swing.JButton backArrow1;
-    private javax.swing.JButton backArrow2;
-    private javax.swing.JButton backArrow3;
     private javax.swing.JButton backArrow4;
-    private javax.swing.JButton backArrow5;
     private javax.swing.JLabel backGlow;
     private javax.swing.JLabel background;
     private javax.swing.JLabel backgroundInnerCity;
@@ -1139,6 +1291,7 @@ new Point(0,0),"custom cursor"));
     private javax.swing.JLabel backgroundQuarter;
     private javax.swing.JLabel backgroundTrading;
     private javax.swing.JLabel backgroundZoomed;
+    private javax.swing.JButton capabilitiesButton;
     private javax.swing.JButton crimeButton;
     private javax.swing.JButton employButton;
     private javax.swing.JButton giveMoneyButton;
@@ -1146,32 +1299,48 @@ new Point(0,0),"custom cursor"));
     private javax.swing.JButton hovGlow;
     private javax.swing.JButton hovGlow1;
     private javax.swing.JButton hovGlow2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton icBackArrow;
+    private javax.swing.JScrollPane icScrollPane;
+    private javax.swing.JTextArea icTextWindow;
     private javax.swing.JLabel loadingScreen;
     private javax.swing.JTextField moneyAmountBox;
+    private javax.swing.JButton ocBackArrow;
+    private javax.swing.JScrollPane ocScrollPane;
+    private javax.swing.JTextArea ocTextWindow;
+    private javax.swing.JButton opinionButton;
     private javax.swing.JButton povertyButton;
     private javax.swing.JLabel scrollBar1;
     private javax.swing.JLabel scrollTitle;
+    private javax.swing.JButton talkFarmerButton;
     private javax.swing.JButton talkGuardButton;
+    private javax.swing.JButton talkMerchantButton;
+    private javax.swing.JButton tdBackArrow;
+    private javax.swing.JScrollPane tdScrollPane;
+    private javax.swing.JTextArea tdTextWindow;
     private javax.swing.JButton toggleScroll;
+    private javax.swing.JButton weatherButton;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {CursorSet(false);}
-
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
-
-    @Override
-    public void mousePressed(MouseEvent e) {CursorSet(true);}
-
-    
-    
+    public void mouseClicked(MouseEvent e) {
     }
 
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        CursorSet(false);
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        CursorSet(true);
+    }
+
+}
