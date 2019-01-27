@@ -53,18 +53,26 @@ public class Variables {
     public static volatile double lowAvgWealth, lowTotalWealth; //similar to K_citizenTotalWealth/AvgWealth but just for lower class citizens
     
     
-
+    
 
     //INNER CITY VARIABLES
     //===================================================================================================================
-    public static volatile int InnerCityPopulation; //I
+    public static volatile int InnerCityPopulation; //total number of people lvi
     public static volatile int employmentStat, povertyStat, crimeStat; // STATS are based from 1 to 100. Higher means higher employment, more poverty, more crime.
+
+    
+    //OUTER CITY VARIABLES
+    //===================================================================================================================    
     
     
     
     
+    //TRADING DISTRICT VARIABLES
+    //===================================================================================================================    
     
     
     
+    //QUARTER OF WEALTH VARIABLES
+    //=================================================================================================================== 
     
 }

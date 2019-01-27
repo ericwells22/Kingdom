@@ -74,6 +74,13 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         backArrow5 = new javax.swing.JButton();
         backgroundTrading = new javax.swing.JLabel();
         InnerCityLayout = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextWindow = new javax.swing.JTextArea();
+        talkGuardButton = new javax.swing.JButton();
+        giveMoneyButton = new javax.swing.JButton();
+        employButton = new javax.swing.JButton();
+        povertyButton = new javax.swing.JButton();
+        crimeButton = new javax.swing.JButton();
         backArrow2 = new javax.swing.JButton();
         backgroundInnerCity = new javax.swing.JLabel();
         PalaceLayout = new javax.swing.JPanel();
@@ -146,6 +153,55 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         InnerCityLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
         InnerCityLayout.setLayout(null);
 
+        TextWindow.setEditable(false);
+        TextWindow.setColumns(20);
+        TextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 18)); // NOI18N
+        TextWindow.setRows(5);
+        TextWindow.setText("\n");
+        TextWindow.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(TextWindow);
+
+        InnerCityLayout.add(jScrollPane1);
+        jScrollPane1.setBounds(340, 300, 580, 210);
+
+        talkGuardButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        talkGuardButton.setText("Talk to Royal Guard");
+        talkGuardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                talkGuardButtonActionPerformed(evt);
+            }
+        });
+        InnerCityLayout.add(talkGuardButton);
+        talkGuardButton.setBounds(410, 530, 210, 70);
+
+        giveMoneyButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        giveMoneyButton.setText("Give Money to Poor");
+        giveMoneyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                giveMoneyButtonActionPerformed(evt);
+            }
+        });
+        InnerCityLayout.add(giveMoneyButton);
+        giveMoneyButton.setBounds(660, 530, 210, 70);
+
+        employButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        employButton.setText("Employment?");
+        InnerCityLayout.add(employButton);
+        employButton.setBounds(780, 530, 140, 70);
+        employButton.setVisible(false);
+
+        povertyButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        povertyButton.setText("How's Poverty?");
+        InnerCityLayout.add(povertyButton);
+        povertyButton.setBounds(340, 530, 160, 70);
+        povertyButton.setVisible(false);
+
+        crimeButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        crimeButton.setText("How's Crime?");
+        InnerCityLayout.add(crimeButton);
+        crimeButton.setBounds(560, 530, 140, 70);
+        crimeButton.setVisible(false);
+
         backArrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
         backArrow2.setContentAreaFilled(false);
         backArrow2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
@@ -159,7 +215,6 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         backArrow2.setBounds(30, 20, 80, 60);
 
         backgroundInnerCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/inner_city/inner_city_GIF.gif"))); // NOI18N
-        backgroundInnerCity.setText("jLabel1");
         InnerCityLayout.add(backgroundInnerCity);
         backgroundInnerCity.setBounds(0, 0, 1200, 800);
 
@@ -648,17 +703,22 @@ PalaceGlow.setVisible(false);
     }//GEN-LAST:event_PalaceMouseExited
 
     private void InnerCity1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity1MouseEntered
-InnerCityGlow.setVisible(true);
+
+        
+        
+        InnerCityGlow.setVisible(true);
     }//GEN-LAST:event_InnerCity1MouseEntered
 
     private void InnerCity1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity1MouseExited
+
+
+
 InnerCityGlow.setVisible(false);InnerCityGlow.setVisible(false);    }//GEN-LAST:event_InnerCity1MouseExited
 
     private void InnerCity1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InnerCity1ActionPerformed
 
-SwitchPanel(ZoomedLayout2,InnerCityLayout);
+        SwitchPanel(ZoomedLayout2,InnerCityLayout);
    
-
     }//GEN-LAST:event_InnerCity1ActionPerformed
 
     private void InnerCity2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InnerCity2MouseEntered
@@ -668,8 +728,8 @@ InnerCityGlow.setVisible(true);    }//GEN-LAST:event_InnerCity2MouseEntered
 InnerCityGlow.setVisible(false);    }//GEN-LAST:event_InnerCity2MouseExited
 
     private void InnerCity2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InnerCity2ActionPerformed
-
-SwitchPanel(ZoomedLayout2,InnerCityLayout);
+        
+        SwitchPanel(ZoomedLayout2,InnerCityLayout);
 
     }//GEN-LAST:event_InnerCity2ActionPerformed
 
@@ -734,6 +794,11 @@ SwitchPanel(PalaceLayout,ZoomedLayout2);
 
     private void backArrow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow2ActionPerformed
 SwitchPanel(InnerCityLayout,ZoomedLayout2);
+        
+employButton.setVisible(false); povertyButton.setVisible(false); crimeButton.setVisible(false);
+TextWindow.setText("");
+
+
     }//GEN-LAST:event_backArrow2ActionPerformed
 
     private void backArrow3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow3ActionPerformed
@@ -748,7 +813,23 @@ SwitchPanel(QuarterOfWealth,ZoomedLayout2);
 SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
 
     }//GEN-LAST:event_backArrow5ActionPerformed
+
+    private void talkGuardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_talkGuardButtonActionPerformed
+
+        employButton.setVisible(true); povertyButton.setVisible(true); crimeButton.setVisible(true);
+
+        TextWindow.setText(text.RandomGuardGreet(nameKing));
+        talkGuardButton.setVisible(false); giveMoneyButton.setVisible(false);
+        
+
+    }//GEN-LAST:event_talkGuardButtonActionPerformed
+
+    private void giveMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_giveMoneyButtonActionPerformed
 GameSetup gamesetup = new GameSetup();
+TextUpdates text = new TextUpdates();
+
 boolean scrollIn = false;
 
 String nameKingdom;
@@ -859,6 +940,7 @@ new Point(0,0),"custom cursor"));
     private javax.swing.JLabel QuarterWealthGlow;
     private javax.swing.JLabel ScrollIn;
     private javax.swing.JLabel ScrollOut;
+    private javax.swing.JTextArea TextWindow;
     private javax.swing.JButton Tower1;
     private javax.swing.JLabel TowerGlow;
     private javax.swing.JButton Trade1;
@@ -880,12 +962,18 @@ new Point(0,0),"custom cursor"));
     private javax.swing.JLabel backgroundQuarter;
     private javax.swing.JLabel backgroundTrading;
     private javax.swing.JLabel backgroundZoomed;
+    private javax.swing.JButton crimeButton;
+    private javax.swing.JButton employButton;
+    private javax.swing.JButton giveMoneyButton;
     private javax.swing.JButton hovGlow;
     private javax.swing.JButton hovGlow1;
     private javax.swing.JButton hovGlow2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel loadingScreen;
+    private javax.swing.JButton povertyButton;
     private javax.swing.JLabel scrollBar1;
     private javax.swing.JLabel scrollTitle;
+    private javax.swing.JButton talkGuardButton;
     private javax.swing.JButton toggleScroll;
     // End of variables declaration//GEN-END:variables
 
