@@ -76,6 +76,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         InnerCityLayout = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextWindow = new javax.swing.JTextArea();
+        moneyAmountBox = new javax.swing.JTextField();
         talkGuardButton = new javax.swing.JButton();
         giveMoneyButton = new javax.swing.JButton();
         employButton = new javax.swing.JButton();
@@ -153,16 +154,31 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         InnerCityLayout.setPreferredSize(new java.awt.Dimension(1200, 800));
         InnerCityLayout.setLayout(null);
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         TextWindow.setEditable(false);
         TextWindow.setColumns(20);
-        TextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 18)); // NOI18N
+        TextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 24)); // NOI18N
         TextWindow.setRows(5);
-        TextWindow.setText("\n");
-        TextWindow.setWrapStyleWord(true);
+        TextWindow.setOpaque(false);
         jScrollPane1.setViewportView(TextWindow);
+        TextWindow.setLineWrap(true);
 
         InnerCityLayout.add(jScrollPane1);
         jScrollPane1.setBounds(340, 300, 580, 210);
+
+        moneyAmountBox.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        moneyAmountBox.setText("0.00");
+        moneyAmountBox.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                moneyAmountBoxInputMethodTextChanged(evt);
+            }
+        });
+        InnerCityLayout.add(moneyAmountBox);
+        moneyAmountBox.setBounds(590, 530, 80, 70);
 
         talkGuardButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         talkGuardButton.setText("Talk to Royal Guard");
@@ -793,10 +809,16 @@ SwitchPanel(PalaceLayout,ZoomedLayout2);
     }//GEN-LAST:event_backArrow1ActionPerformed
 
     private void backArrow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrow2ActionPerformed
-SwitchPanel(InnerCityLayout,ZoomedLayout2);
         
+SwitchPanel(InnerCityLayout,ZoomedLayout2);
+
+
+talkGuardButton.setVisible(true); giveMoneyButton.setVisible(true);
 employButton.setVisible(false); povertyButton.setVisible(false); crimeButton.setVisible(false);
 TextWindow.setText("");
+
+
+
 
 
     }//GEN-LAST:event_backArrow2ActionPerformed
@@ -825,8 +847,28 @@ SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
     }//GEN-LAST:event_talkGuardButtonActionPerformed
 
     private void giveMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyButtonActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_giveMoneyButtonActionPerformed
+
+    private void moneyAmountBoxInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_moneyAmountBoxInputMethodTextChanged
+        System.out.println("Adjusted");
+        
+        
+        try{
+            
+            double input = Double.parseDouble(moneyAmountBox.getText());
+            if (input<0.00){
+                moneyAmountBox.setText("0.00");
+            } else if(input>9.99){moneyAmountBox.setText("0.00");}
+        }
+        catch(Exception e){
+            
+            moneyAmountBox.setText("0.00");
+        }
+
+
+    }//GEN-LAST:event_moneyAmountBoxInputMethodTextChanged
 GameSetup gamesetup = new GameSetup();
 TextUpdates text = new TextUpdates();
 
@@ -970,6 +1012,7 @@ new Point(0,0),"custom cursor"));
     private javax.swing.JButton hovGlow2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel loadingScreen;
+    private javax.swing.JTextField moneyAmountBox;
     private javax.swing.JButton povertyButton;
     private javax.swing.JLabel scrollBar1;
     private javax.swing.JLabel scrollTitle;
