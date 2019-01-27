@@ -42,9 +42,7 @@ public class InnerCity {
     
 
     public static void GiveToPoor(double amt) {
-        if(Variables.K_royalGold>=amt){
-        System.out.println("GIVING " +amt);
-        
+        if(Variables.K_royalGold>=amt){      
         
         Variables.K_royalGold -= amt;
 

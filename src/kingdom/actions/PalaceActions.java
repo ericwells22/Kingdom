@@ -7,18 +7,18 @@ package kingdom.actions;
 
 public class PalaceActions {
     
-    public static void eatWithPoor() {
-        //do something
-    }
+    public static void eatWithClass(int classLvl){
+        //1 is poor, 2 is middle, 3 is nobles
     
-    public static void eatWithMiddle() {
-        //do something
     }
-    
-    public static void eatWithRich() {
+
+    public static void eatWithNation(int nation){
+        
     }
+
     
     public static String getDefense() {
         return "meh";
     }
+
 }

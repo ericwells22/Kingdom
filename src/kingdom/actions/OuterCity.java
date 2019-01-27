@@ -17,7 +17,7 @@ public class OuterCity {
     public static String getWeather() {
         switch(Variables.weatherStat) {
             case 0:
-                return "Flooding";
+                return "Flooding"; 
             case 1:
                 return "Rainy";
             case 2:
