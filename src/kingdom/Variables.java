@@ -7,8 +7,9 @@ package kingdom;
 public class Variables {
 
     
-    
-    
+    //SYSTEM VARIABLES
+    public static volatile int K_DayNum;
+
     
     
     // BASE VARIABLES

@@ -53,7 +53,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         waitThread.start(); GameLoop.start();
         
         
-        ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1);
+        ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1, DayLabel);
         
        
         
@@ -93,6 +93,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         backGlow = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         ZoomedLayout2 = new javax.swing.JPanel();
+        DayLabel = new javax.swing.JLabel();
         toggleScroll = new javax.swing.JButton();
         scrollTitle = new javax.swing.JLabel();
         scrollBar1 = new javax.swing.JLabel();
@@ -163,7 +164,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         TextWindow.setEditable(false);
         TextWindow.setColumns(20);
         TextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 24)); // NOI18N
-        TextWindow.setRows(5);
+        TextWindow.setRows(500);
         TextWindow.setWrapStyleWord(true);
         TextWindow.setAutoscrolls(false);
         TextWindow.setFocusable(false);
@@ -185,13 +186,13 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
         InnerCityLayout.add(giveMoneyValidate);
-        giveMoneyValidate.setBounds(660, 530, 130, 70);
+        giveMoneyValidate.setBounds(610, 530, 130, 70);
         giveMoneyValidate.setVisible(false);
 
         moneyAmountBox.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         moneyAmountBox.setText("0.00");
         InnerCityLayout.add(moneyAmountBox);
-        moneyAmountBox.setBounds(570, 530, 90, 70);
+        moneyAmountBox.setBounds(520, 530, 90, 70);
         moneyAmountBox.setVisible(false);
         moneyAmountBox.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -385,6 +386,12 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         ZoomedLayout2.setPreferredSize(new java.awt.Dimension(1200, 800));
         ZoomedLayout2.setLayout(null);
 
+        DayLabel.setFont(new java.awt.Font("Script MT Bold", 1, 48)); // NOI18N
+        DayLabel.setText("Day ");
+        ZoomedLayout2.add(DayLabel);
+        DayLabel.setBounds(960, 90, 180, 70);
+        DayLabel.setVisible(false);
+
         toggleScroll.setBorderPainted(false);
         toggleScroll.setContentAreaFilled(false);
         toggleScroll.setName(""); // NOI18N
@@ -396,11 +403,11 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         ZoomedLayout2.add(toggleScroll);
         toggleScroll.setBounds(860, 20, 340, 70);
 
-        scrollTitle.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        scrollTitle.setFont(new java.awt.Font("Script MT Bold", 1, 48)); // NOI18N
         scrollTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        scrollTitle.setText("kingdom name");
+        scrollTitle.setText("Kingdom Name");
         ZoomedLayout2.add(scrollTitle);
-        scrollTitle.setBounds(880, 30, 320, 60);
+        scrollTitle.setBounds(860, 20, 340, 80);
 
         scrollBar1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         scrollBar1.setText("__________________________________");
@@ -850,7 +857,7 @@ SwitchPanel(ZoomedLayout2,ZoomedLayout1);
     }//GEN-LAST:event_backArrowActionPerformed
 
     private void toggleScrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleScrollActionPerformed
-ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1);
+ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1,DayLabel);
 
     }//GEN-LAST:event_toggleScrollActionPerformed
 
@@ -862,7 +869,7 @@ SwitchPanel(PalaceLayout,ZoomedLayout2);
         
 SwitchPanel(InnerCityLayout,ZoomedLayout2);
 
-
+moneyAmountBox.setVisible(false); giveMoneyValidate.setVisible(false);
 talkGuardButton.setVisible(true); giveMoneyButton.setVisible(true); moneyAmountBox.setVisible(false); 
 employButton.setVisible(false); povertyButton.setVisible(false); crimeButton.setVisible(false);
 TextWindow.setText("");
@@ -888,6 +895,7 @@ SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
 
     private void talkGuardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_talkGuardButtonActionPerformed
 
+        TextWindow.setText("");
         employButton.setVisible(true); povertyButton.setVisible(true); crimeButton.setVisible(true);
 
         TextWindow.setText(text.RandomGuardGreet(nameKing));
@@ -903,7 +911,7 @@ SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
         moneyAmountBox.setVisible(true); 
         giveMoneyValidate.setVisible(true);
         
-        TextWindow.append("\n\n\n\n"+TextUpdates.PoorPersonDialogue(nameKing, 0, false));
+        TextWindow.append(TextUpdates.PoorPersonDialogue(nameKing, 0, false)+"\n");
         moneyAmountBox.setText("0.00");
         
     }//GEN-LAST:event_giveMoneyButtonActionPerformed
@@ -916,7 +924,7 @@ SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
         giveMoneyValidate.setVisible(false);
         
                 int howBig = 0; if(Double.parseDouble(moneyAmountBox.getText())>1.00){howBig=3;} if(Double.parseDouble(moneyAmountBox.getText())>0.30&&Double.parseDouble(moneyAmountBox.getText())<=1.00){howBig=2;} if(Double.parseDouble(moneyAmountBox.getText())<=0.3){howBig=1;} 
-        TextWindow.append("\n\n\n\n"+TextUpdates.PoorPersonDialogue(nameKing, howBig, true));
+        TextWindow.append(TextUpdates.PoorPersonDialogue(nameKing, howBig, true)+"\n");
                 
         giveMoneyButton.setVisible(true); talkGuardButton.setVisible(true);
 
@@ -934,18 +942,17 @@ SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
     }//GEN-LAST:event_giveMoneyValidateActionPerformed
 
     private void povertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_povertyButtonActionPerformed
-
-TextWindow.append("\n\n\n\n"+InnerCity.getPovertyStat());
+TextWindow.append("\n"+InnerCity.getPovertyStat());
         
     }//GEN-LAST:event_povertyButtonActionPerformed
 
     private void employButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employButtonActionPerformed
-TextWindow.append("\n\n\n\n"+InnerCity.getEmploymentStat());
+TextWindow.append("\n"+InnerCity.getEmploymentStat());
 
     }//GEN-LAST:event_employButtonActionPerformed
 
     private void crimeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crimeButtonActionPerformed
-TextWindow.append("\n\n\n\n"+InnerCity.getCrimeStat());
+TextWindow.append("\n"+InnerCity.getCrimeStat());
 
     }//GEN-LAST:event_crimeButtonActionPerformed
     
@@ -985,15 +992,15 @@ public void setScrollTitle(){
 
 
 
-public void ToggleScroll(JLabel title, JLabel scrollout, JLabel scrollin, JLabel scrollbar){
+public void ToggleScroll(JLabel title, JLabel scrollout, JLabel scrollin, JLabel scrollbar, JLabel dayNum){
     if(scrollIn==false){
     scrollIn=true;
-    scrollout.setVisible(false); scrollbar.setVisible(false); title.setVisible(false);
+    scrollout.setVisible(false); scrollbar.setVisible(false); title.setVisible(false); dayNum.setVisible(false);
     
     scrollin.setVisible(true);  
 } else{
     scrollIn=false;
-    scrollout.setVisible(true); scrollbar.setVisible(true); title.setVisible(true);
+    scrollout.setVisible(true); scrollbar.setVisible(true); title.setVisible(true); dayNum.setVisible(true);
     
     scrollin.setVisible(false);
 }
@@ -1055,20 +1062,22 @@ Thread GameLoop = new Thread(new Runnable() {
                 
      while(true){
          try { 
-             Thread.sleep(10);      //SLIGHT DELAY BEFORE UPDATING GAME COMPONENTS
+             Thread.sleep(1000);      //SLIGHT DELAY BEFORE UPDATING GAME COMPONENTS
          } catch (InterruptedException ex) {
              Logger.getLogger(KingdomGame.class.getName()).log(Level.SEVERE, null, ex);
          }
-         
+         Variables.K_DayNum++;
          
          CheckTextBoxes();
          
+         DayLabel.setText("Day "+Variables.K_DayNum);
          
          
      }
         
     }        
 
+    
 
 
 });    
@@ -1093,6 +1102,7 @@ new Point(0,0),"custom cursor"));
     public volatile JPanel jReady = null;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel DayLabel;
     private javax.swing.JButton InnerCity1;
     private javax.swing.JButton InnerCity2;
     private javax.swing.JLabel InnerCityGlow;
