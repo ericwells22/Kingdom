@@ -120,12 +120,12 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         backgroundQuarter = new javax.swing.JLabel();
         OuterCityLayout = new javax.swing.JPanel();
         ocBackArrow = new javax.swing.JButton();
-        backgroundOuterCity = new javax.swing.JLabel();
         agButton = new javax.swing.JButton();
         ocScrollPane = new javax.swing.JScrollPane();
         ocTextWindow = new javax.swing.JTextArea();
         weatherButton = new javax.swing.JButton();
         talkFarmerButton = new javax.swing.JButton();
+        backgroundOuterCity = new javax.swing.JLabel();
         loadingScreen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -685,15 +685,8 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         OuterCityLayout.add(ocBackArrow);
         ocBackArrow.setBounds(30, 20, 80, 60);
 
-        backgroundOuterCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/outer_city/outer_city_GIF.gif"))); // NOI18N
-        backgroundOuterCity.setMaximumSize(new java.awt.Dimension(1200, 780));
-        backgroundOuterCity.setMinimumSize(new java.awt.Dimension(1200, 780));
-        backgroundOuterCity.setPreferredSize(new java.awt.Dimension(1200, 780));
-        OuterCityLayout.add(backgroundOuterCity);
-        backgroundOuterCity.setBounds(0, 0, 1200, 780);
-
         agButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agButton.setText("How's Poverty?");
+        agButton.setText("Hows agriculture?");
         agButton.setFocusable(false);
         agButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -701,7 +694,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
         OuterCityLayout.add(agButton);
-        agButton.setBounds(340, 530, 160, 70);
+        agButton.setBounds(340, 530, 200, 70);
         agButton.setVisible(false);
 
         ocScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -728,7 +721,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         ocScrollPane.setBounds(340, 300, 580, 210);
 
         weatherButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        weatherButton.setText("Employment?");
+        weatherButton.setText("How's the weather?");
         weatherButton.setFocusable(false);
         weatherButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -736,11 +729,11 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
         OuterCityLayout.add(weatherButton);
-        weatherButton.setBounds(780, 530, 140, 70);
+        weatherButton.setBounds(720, 530, 200, 70);
         weatherButton.setVisible(false);
 
         talkFarmerButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        talkFarmerButton.setText("Talk to Royal Guard");
+        talkFarmerButton.setText("Talk to Farmer");
         talkFarmerButton.setFocusable(false);
         talkFarmerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -748,7 +741,14 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
         OuterCityLayout.add(talkFarmerButton);
-        talkFarmerButton.setBounds(410, 530, 210, 70);
+        talkFarmerButton.setBounds(530, 530, 210, 70);
+
+        backgroundOuterCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/outer_city/outer_city_GIF.gif"))); // NOI18N
+        backgroundOuterCity.setMaximumSize(new java.awt.Dimension(1200, 780));
+        backgroundOuterCity.setMinimumSize(new java.awt.Dimension(1200, 780));
+        backgroundOuterCity.setPreferredSize(new java.awt.Dimension(1200, 780));
+        OuterCityLayout.add(backgroundOuterCity);
+        backgroundOuterCity.setBounds(0, 0, 1200, 780);
 
         loadingScreen.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
         loadingScreen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
