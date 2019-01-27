@@ -74,5 +74,6 @@ public class Variables {
     
     //QUARTER OF WEALTH VARIABLES
     //=================================================================================================================== 
+    public static volatile int weatherStat;
     
 }
