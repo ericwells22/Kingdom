@@ -11,6 +11,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.concurrent.TimeUnit;
@@ -77,6 +79,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         jScrollPane1 = new javax.swing.JScrollPane();
         TextWindow = new javax.swing.JTextArea();
         moneyAmountBox = new javax.swing.JTextField();
+        dollarAmountBox = new javax.swing.JTextField();
         talkGuardButton = new javax.swing.JButton();
         giveMoneyButton = new javax.swing.JButton();
         employButton = new javax.swing.JButton();
@@ -170,15 +173,31 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
 
         moneyAmountBox.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         moneyAmountBox.setText("0.00");
-        moneyAmountBox.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+        moneyAmountBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moneyAmountBoxActionPerformed(evt);
             }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                moneyAmountBoxInputMethodTextChanged(evt);
+        });
+        moneyAmountBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                moneyAmountBoxKeyPressed(evt);
             }
         });
         InnerCityLayout.add(moneyAmountBox);
-        moneyAmountBox.setBounds(590, 530, 80, 70);
+        moneyAmountBox.setBounds(520, 530, 80, 70);
+        moneyAmountBox.setVisible(false);
+        moneyAmountBox.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (moneyAmountBox.getText().length() >= 4 ) // limit textfield to 3 characters
+                e.consume();
+            }
+        });
+
+        dollarAmountBox.setEditable(false);
+        dollarAmountBox.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        InnerCityLayout.add(dollarAmountBox);
+        dollarAmountBox.setBounds(600, 530, 170, 70);
+        dollarAmountBox.setVisible(false);
 
         talkGuardButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         talkGuardButton.setText("Talk to Royal Guard");
@@ -215,7 +234,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         crimeButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         crimeButton.setText("How's Crime?");
         InnerCityLayout.add(crimeButton);
-        crimeButton.setBounds(560, 530, 140, 70);
+        crimeButton.setBounds(570, 530, 140, 70);
         crimeButton.setVisible(false);
 
         backArrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
@@ -813,7 +832,7 @@ SwitchPanel(PalaceLayout,ZoomedLayout2);
 SwitchPanel(InnerCityLayout,ZoomedLayout2);
 
 
-talkGuardButton.setVisible(true); giveMoneyButton.setVisible(true);
+talkGuardButton.setVisible(true); giveMoneyButton.setVisible(true); moneyAmountBox.setVisible(false); dollarAmountBox.setVisible(false);
 employButton.setVisible(false); povertyButton.setVisible(false); crimeButton.setVisible(false);
 TextWindow.setText("");
 
@@ -847,28 +866,31 @@ SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
     }//GEN-LAST:event_talkGuardButtonActionPerformed
 
     private void giveMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyButtonActionPerformed
-
+        talkGuardButton.setVisible(false);
+        giveMoneyButton.setVisible(false);
+        moneyAmountBox.setVisible(true); dollarAmountBox.setVisible(true);
 
     }//GEN-LAST:event_giveMoneyButtonActionPerformed
 
-    private void moneyAmountBoxInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_moneyAmountBoxInputMethodTextChanged
-        System.out.println("Adjusted");
-        
-        
+    private void moneyAmountBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moneyAmountBoxActionPerformed
+
+    }//GEN-LAST:event_moneyAmountBoxActionPerformed
+
+    private void moneyAmountBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_moneyAmountBoxKeyPressed
+        System.out.println("adjusted");
         try{
             
             double input = Double.parseDouble(moneyAmountBox.getText());
-            if (input<0.00){
-                moneyAmountBox.setText("0.00");
-            } else if(input>9.99){moneyAmountBox.setText("0.00");}
+            
+            
+            if(input==0.00){dollarAmountBox.setText("");}
+            else{dollarAmountBox.setText("$"+Double.toString(input*500_000));}
+            
         }
         catch(Exception e){
             
             moneyAmountBox.setText("0.00");
-        }
-
-
-    }//GEN-LAST:event_moneyAmountBoxInputMethodTextChanged
+        }    }//GEN-LAST:event_moneyAmountBoxKeyPressed
 GameSetup gamesetup = new GameSetup();
 TextUpdates text = new TextUpdates();
 
@@ -1005,6 +1027,7 @@ new Point(0,0),"custom cursor"));
     private javax.swing.JLabel backgroundTrading;
     private javax.swing.JLabel backgroundZoomed;
     private javax.swing.JButton crimeButton;
+    private javax.swing.JTextField dollarAmountBox;
     private javax.swing.JButton employButton;
     private javax.swing.JButton giveMoneyButton;
     private javax.swing.JButton hovGlow;
