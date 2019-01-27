@@ -18,4 +18,7 @@ public class PalaceActions {
     public static void eatWithRich() {
     }
     
+    public static String getDefense() {
+        return "meh";
+    }
 }

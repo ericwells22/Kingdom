@@ -93,6 +93,9 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         eatWithPoorButton = new javax.swing.JButton();
         eatWithRichButton = new javax.swing.JButton();
         eatButton = new javax.swing.JButton();
+        talkDefenseButton = new javax.swing.JButton();
+        palaceScrollPane = new javax.swing.JScrollPane();
+        palaceTextWindow = new javax.swing.JTextArea();
         backgroundPalace = new javax.swing.JLabel();
         ZoomedLayout1 = new javax.swing.JPanel();
         hovGlow = new javax.swing.JButton();
@@ -386,7 +389,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
         PalaceLayout.add(eatWithMiddleButton);
-        eatWithMiddleButton.setBounds(720, 670, 160, 70);
+        eatWithMiddleButton.setBounds(190, 660, 160, 70);
         eatWithMiddleButton.setVisible(false);
 
         eatWithPoorButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -398,7 +401,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
         PalaceLayout.add(eatWithPoorButton);
-        eatWithPoorButton.setBounds(530, 670, 160, 70);
+        eatWithPoorButton.setBounds(10, 660, 160, 70);
         eatWithPoorButton.setVisible(false);
 
         eatWithRichButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -410,7 +413,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
         PalaceLayout.add(eatWithRichButton);
-        eatWithRichButton.setBounds(900, 670, 140, 70);
+        eatWithRichButton.setBounds(360, 660, 140, 70);
         eatWithRichButton.setVisible(false);
 
         eatButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -422,7 +425,40 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
         PalaceLayout.add(eatButton);
-        eatButton.setBounds(690, 670, 220, 70);
+        eatButton.setBounds(160, 660, 220, 70);
+
+        talkDefenseButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        talkDefenseButton.setText("Talk to royal guard leader");
+        talkDefenseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                talkDefenseButtonActionPerformed(evt);
+            }
+        });
+        PalaceLayout.add(talkDefenseButton);
+        talkDefenseButton.setBounds(140, 620, 270, 30);
+
+        palaceScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        palaceScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        palaceScrollPane.setFocusable(false);
+        palaceScrollPane.setOpaque(false);
+        palaceScrollPane.setRequestFocusEnabled(false);
+        palaceScrollPane.setWheelScrollingEnabled(false);
+
+        palaceTextWindow.setEditable(false);
+        palaceTextWindow.setColumns(20);
+        palaceTextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 24)); // NOI18N
+        palaceTextWindow.setRows(500);
+        palaceTextWindow.setWrapStyleWord(true);
+        palaceTextWindow.setAutoscrolls(false);
+        palaceTextWindow.setFocusable(false);
+        palaceTextWindow.setOpaque(false);
+        palaceTextWindow.setRequestFocusEnabled(false);
+        palaceTextWindow.setVerifyInputWhenFocusTarget(false);
+        palaceScrollPane.setViewportView(palaceTextWindow);
+        icTextWindow.setLineWrap(true);
+
+        PalaceLayout.add(palaceScrollPane);
+        palaceScrollPane.setBounds(60, 400, 410, 210);
 
         backgroundPalace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/bckground_gifs/palace/royal_palace1_GIF.gif"))); // NOI18N
         backgroundPalace.setMaximumSize(new java.awt.Dimension(1200, 800));
@@ -1098,10 +1134,12 @@ TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
 
     private void palaceBackArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palaceBackArrowActionPerformed
         SwitchPanel(PalaceLayout, ZoomedLayout2);
+        palaceTextWindow.setText("");
         eatWithPoorButton.setVisible(false);
         eatWithMiddleButton.setVisible(false);
         eatWithRichButton.setVisible(false);
         eatButton.setVisible(true);
+        talkDefenseButton.setVisible(true);
     }//GEN-LAST:event_palaceBackArrowActionPerformed
 
     private void icBackArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_icBackArrowActionPerformed
@@ -1240,7 +1278,7 @@ TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
     }//GEN-LAST:event_capabilitiesButtonActionPerformed
 
     private void opinionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opinionButtonActionPerformed
-        tdTextWindow.append("\n"+Trading.getOpinion());
+        tdTextWindow.append("\n" + Trading.getOpinion());
     }//GEN-LAST:event_opinionButtonActionPerformed
 
     private void talkMerchantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_talkMerchantButtonActionPerformed
@@ -1258,7 +1296,7 @@ TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
 
     private void loyaltyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loyaltyButtonActionPerformed
         // TODO add your handling code here:
-        qwTextWindow.append("\n"+QuarterWealth.getOpinion());
+        qwTextWindow.append("\n" + QuarterWealth.getOpinion());
     }//GEN-LAST:event_loyaltyButtonActionPerformed
 
     private void talkNobleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_talkNobleButtonActionPerformed
@@ -1275,6 +1313,7 @@ TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
         eatWithPoorButton.setVisible(false);
         eatWithMiddleButton.setVisible(false);
         eatWithRichButton.setVisible(false);
+        palaceTextWindow.append("\nYou ate with the middle class");
     }//GEN-LAST:event_eatWithMiddleButtonActionPerformed
 
     private void eatWithPoorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eatWithPoorButtonActionPerformed
@@ -1283,6 +1322,8 @@ TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
         eatWithPoorButton.setVisible(false);
         eatWithMiddleButton.setVisible(false);
         eatWithRichButton.setVisible(false);
+        palaceTextWindow.append("\nYou ate with the poor");
+
     }//GEN-LAST:event_eatWithPoorButtonActionPerformed
 
     private void eatWithRichButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eatWithRichButtonActionPerformed
@@ -1291,15 +1332,27 @@ TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
         eatWithPoorButton.setVisible(false);
         eatWithMiddleButton.setVisible(false);
         eatWithRichButton.setVisible(false);
+        palaceTextWindow.append("\nYou ate with the rich");
+
     }//GEN-LAST:event_eatWithRichButtonActionPerformed
 
     private void eatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eatButtonActionPerformed
         // TODO add your handling code here:
+        palaceTextWindow.setText("Who would you like to eat with?");
         eatWithPoorButton.setVisible(true);
         eatWithMiddleButton.setVisible(true);
         eatWithRichButton.setVisible(true);
         eatButton.setVisible(false);
+        talkDefenseButton.setVisible(false);
     }//GEN-LAST:event_eatButtonActionPerformed
+
+    private void talkDefenseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_talkDefenseButtonActionPerformed
+        // TODO add your handling code here:
+        eatWithPoorButton.setVisible(false);
+        eatWithMiddleButton.setVisible(false);
+        eatWithRichButton.setVisible(false);
+        palaceTextWindow.setText(PalaceActions.getDefense());
+    }//GEN-LAST:event_talkDefenseButtonActionPerformed
 
     public void CheckTextBoxes() {
         try {
@@ -1489,12 +1542,15 @@ TowerGlow.setVisible(false);    }//GEN-LAST:event_Tower1MouseExited
     private javax.swing.JButton opinionButton;
     private javax.swing.JButton ownerButton;
     private javax.swing.JButton palaceBackArrow;
+    private javax.swing.JScrollPane palaceScrollPane;
+    private javax.swing.JTextArea palaceTextWindow;
     private javax.swing.JButton povertyButton;
     private javax.swing.JButton qwBackArrow;
     private javax.swing.JScrollPane qwScrollPane;
     private javax.swing.JTextArea qwTextWindow;
     private javax.swing.JLabel scrollBar1;
     private javax.swing.JLabel scrollTitle;
+    private javax.swing.JButton talkDefenseButton;
     private javax.swing.JButton talkFarmerButton;
     private javax.swing.JButton talkGuardButton;
     private javax.swing.JButton talkMerchantButton;
