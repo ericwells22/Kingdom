@@ -4,20 +4,48 @@ import kingdom.Variables;
 
 public class InnerCity {
     
+    
+    
     public static String getEmploymentStat() {
-        return Integer.toString(Variables.employmentStat);
+        int i = Variables.employmentStat;
+                String dialogue = "Royal Guard: ";
+        if(i<20){return dialogue+"Employment is dangerously low!";}
+        if(i<40){return dialogue+"Employment is not looking good.";}
+        if(i<60){return dialogue+"The employment levels are decent.";}
+        if(i<80){return dialogue+"Employment is looking good.";}
+        if(i<=100){return dialogue+"Employment is looking great!";}
+        return "";
     }
     
     public static String getPovertyStat() {
-        return Integer.toString(Variables.povertyStat);
-    }
+        int i = Variables.povertyStat;
+                String dialogue = "Royal Guard: ";
+        if(i<20){return dialogue+"Poverty is dangerously high sir!";}
+        if(i<40){return dialogue+"Our people are suffering. Poverty is high.";}
+        if(i<60){return dialogue+"The poverty levels are average.";}
+        if(i<80){return dialogue+"Poverty is less common than average.";}
+        if(i<=100){return dialogue+"I am happy to report that poverty is very low!";}
+        return "";    }
     
     public static String getCrimeStat() {
-        return Integer.toString(Variables.povertyStat);
-    }
+        int i = Variables.crimeStat;
+                String dialogue = "Royal Guard: ";
+        if(i<20){return dialogue+"Our crime rate is shooting through the roof!";}
+        if(i<40){return dialogue+"The crime rate is higher than it should be!";}
+        if(i<60){return dialogue+"The crime rate is about average.";}
+        if(i<80){return dialogue+"Crime incidents are less common than average.";}
+        if(i<=100){return dialogue+"I am happy to report that crime is very rare!";}
+        return "";    }
+    
+    
+    
+    
 
     public static void GiveToPoor(double amt) {
+        if(Variables.K_royalGold>=amt){
         System.out.println("GIVING " +amt);
+        
+        
         Variables.K_royalGold -= amt;
 
         //SUPER MAD POOR Take the money and spit on you - HIGH chance to steal more
@@ -41,6 +69,8 @@ public class InnerCity {
         
         Variables.lowTotalWealth += amt;
 
+    }
+    
     }
 
  

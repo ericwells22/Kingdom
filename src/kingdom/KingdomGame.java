@@ -50,7 +50,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
         TradingDistrictLayout.setVisible(false);
 
         
-        waitThread.start();
+        waitThread.start(); GameLoop.start();
         
         
         ToggleScroll(scrollTitle, ScrollOut, ScrollIn, scrollBar1);
@@ -155,12 +155,21 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setFocusable(false);
+        jScrollPane1.setOpaque(false);
+        jScrollPane1.setRequestFocusEnabled(false);
+        jScrollPane1.setWheelScrollingEnabled(false);
 
         TextWindow.setEditable(false);
         TextWindow.setColumns(20);
         TextWindow.setFont(new java.awt.Font("Mongolian Baiti", 0, 24)); // NOI18N
         TextWindow.setRows(5);
+        TextWindow.setWrapStyleWord(true);
+        TextWindow.setAutoscrolls(false);
+        TextWindow.setFocusable(false);
         TextWindow.setOpaque(false);
+        TextWindow.setRequestFocusEnabled(false);
+        TextWindow.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setViewportView(TextWindow);
         TextWindow.setLineWrap(true);
 
@@ -169,6 +178,7 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
 
         giveMoneyValidate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         giveMoneyValidate.setText("Give Money");
+        giveMoneyValidate.setFocusable(false);
         giveMoneyValidate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 giveMoneyValidateActionPerformed(evt);
@@ -180,16 +190,6 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
 
         moneyAmountBox.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         moneyAmountBox.setText("0.00");
-        moneyAmountBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moneyAmountBoxActionPerformed(evt);
-            }
-        });
-        moneyAmountBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                moneyAmountBoxKeyPressed(evt);
-            }
-        });
         InnerCityLayout.add(moneyAmountBox);
         moneyAmountBox.setBounds(570, 530, 90, 70);
         moneyAmountBox.setVisible(false);
@@ -200,8 +200,19 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
             }
         });
 
+        moneyAmountBox.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c!= KeyEvent.VK_PERIOD)) {
+                    e.consume();
+                }
+
+            }
+        });
+
         talkGuardButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         talkGuardButton.setText("Talk to Royal Guard");
+        talkGuardButton.setFocusable(false);
         talkGuardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 talkGuardButtonActionPerformed(evt);
@@ -222,24 +233,43 @@ public class KingdomGame extends javax.swing.JFrame implements MouseListener {
 
         employButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         employButton.setText("Employment?");
+        employButton.setFocusable(false);
+        employButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employButtonActionPerformed(evt);
+            }
+        });
         InnerCityLayout.add(employButton);
         employButton.setBounds(780, 530, 140, 70);
         employButton.setVisible(false);
 
         povertyButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         povertyButton.setText("How's Poverty?");
+        povertyButton.setFocusable(false);
+        povertyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                povertyButtonActionPerformed(evt);
+            }
+        });
         InnerCityLayout.add(povertyButton);
         povertyButton.setBounds(340, 530, 160, 70);
         povertyButton.setVisible(false);
 
         crimeButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         crimeButton.setText("How's Crime?");
+        crimeButton.setFocusable(false);
+        crimeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crimeButtonActionPerformed(evt);
+            }
+        });
         InnerCityLayout.add(crimeButton);
         crimeButton.setBounds(570, 530, 140, 70);
         crimeButton.setVisible(false);
 
         backArrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.png"))); // NOI18N
         backArrow2.setContentAreaFilled(false);
+        backArrow2.setFocusable(false);
         backArrow2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
         backArrow2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/kingdom/images/buttons/small.arrow.hover.png"))); // NOI18N
         backArrow2.addActionListener(new java.awt.event.ActionListener() {
@@ -869,35 +899,75 @@ SwitchPanel(TradingDistrictLayout,ZoomedLayout2);
     private void giveMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyButtonActionPerformed
         talkGuardButton.setVisible(false);
         giveMoneyButton.setVisible(false);
+        
         moneyAmountBox.setVisible(true); 
         giveMoneyValidate.setVisible(true);
+        
+        TextWindow.append("\n\n\n\n"+TextUpdates.PoorPersonDialogue(nameKing, 0, false));
+        moneyAmountBox.setText("0.00");
+        
     }//GEN-LAST:event_giveMoneyButtonActionPerformed
 
-    private void moneyAmountBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moneyAmountBoxActionPerformed
+    private void giveMoneyValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyValidateActionPerformed
+        try{
+        InnerCity.GiveToPoor(Double.parseDouble(moneyAmountBox.getText()));
+        
+                moneyAmountBox.setVisible(false);
+        giveMoneyValidate.setVisible(false);
+        
+                int howBig = 0; if(Double.parseDouble(moneyAmountBox.getText())>1.00){howBig=3;} if(Double.parseDouble(moneyAmountBox.getText())>0.30&&Double.parseDouble(moneyAmountBox.getText())<=1.00){howBig=2;} if(Double.parseDouble(moneyAmountBox.getText())<=0.3){howBig=1;} 
+        TextWindow.append("\n\n\n\n"+TextUpdates.PoorPersonDialogue(nameKing, howBig, true));
+                
+        giveMoneyButton.setVisible(true); talkGuardButton.setVisible(true);
 
-    }//GEN-LAST:event_moneyAmountBoxActionPerformed
+                    moneyAmountBox.setText("0.00");
+        }
+        catch(Exception e){ 
 
-    private void moneyAmountBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_moneyAmountBoxKeyPressed
-        System.out.println("adjusted");
+//NOT FORMATTED CORRECTLY !
+
+                  moneyAmountBox.setText("0.00");           
+        }
+        
+        
+
+    }//GEN-LAST:event_giveMoneyValidateActionPerformed
+
+    private void povertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_povertyButtonActionPerformed
+
+TextWindow.append("\n\n\n\n"+InnerCity.getPovertyStat());
+        
+    }//GEN-LAST:event_povertyButtonActionPerformed
+
+    private void employButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employButtonActionPerformed
+TextWindow.append("\n\n\n\n"+InnerCity.getEmploymentStat());
+
+    }//GEN-LAST:event_employButtonActionPerformed
+
+    private void crimeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crimeButtonActionPerformed
+TextWindow.append("\n\n\n\n"+InnerCity.getCrimeStat());
+
+    }//GEN-LAST:event_crimeButtonActionPerformed
+    
+    public void CheckTextBoxes(){
         try{
             
             double input = Double.parseDouble(moneyAmountBox.getText());
             
-                        
-        }
-        catch(Exception e){
-            
-        }
-    }//GEN-LAST:event_moneyAmountBoxKeyPressed
-
-    private void giveMoneyValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyValidateActionPerformed
-
-        InnerCity.GiveToPoor(Double.parseDouble(moneyAmountBox.getText()));
-        moneyAmountBox.setVisible(false);
-        giveMoneyValidate.setVisible(false);
+                        if(input<0||input>9.99){moneyAmountBox.setText("0"); moneyAmountBox.setText("0.00");}
         
-    }//GEN-LAST:event_giveMoneyValidateActionPerformed
-GameSetup gamesetup = new GameSetup();
+
+        
+        
+        }catch(Exception e){
+            
+        
+        }
+        
+    }
+    
+    
+    GameSetup gamesetup = new GameSetup();
 TextUpdates text = new TextUpdates();
 
 boolean scrollIn = false;
@@ -906,12 +976,12 @@ String nameKingdom;
 String nameKing;
 int Difficulty; 
         
+
+
+
 public void setScrollTitle(){
     scrollTitle.setText(nameKingdom);
 }
-
-
-
 
 
 
@@ -977,6 +1047,33 @@ Thread waitThread = new Thread(new Runnable() {
 
 
 });    
+
+Thread GameLoop = new Thread(new Runnable() {
+   
+ public void run() {   
+        
+                
+     while(true){
+         try { 
+             Thread.sleep(10);      //SLIGHT DELAY BEFORE UPDATING GAME COMPONENTS
+         } catch (InterruptedException ex) {
+             Logger.getLogger(KingdomGame.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         
+         CheckTextBoxes();
+         
+         
+         
+     }
+        
+    }        
+
+
+
+});    
+
+
 
 
 public void CursorSet(boolean down){

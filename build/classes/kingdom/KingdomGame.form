@@ -216,6 +216,10 @@
           <Properties>
             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
             <Property name="verticalScrollBarPolicy" type="int" value="21"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
+            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+            <Property name="wheelScrollingEnabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -236,7 +240,12 @@
                   <Font name="Mongolian Baiti" size="24" style="0"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="autoscrolls" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="opaque" type="boolean" value="false"/>
+                <Property name="requestFocusEnabled" type="boolean" value="false"/>
+                <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="TextWindow.setLineWrap(true);"/>
@@ -250,6 +259,7 @@
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Give Money"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="giveMoneyValidateActionPerformed"/>
@@ -270,12 +280,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="0.00"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="moneyAmountBoxActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="moneyAmountBoxKeyPressed"/>
-          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="moneyAmountBox.setVisible(false);&#xa;moneyAmountBox.addKeyListener(new KeyAdapter() {&#xa;    public void keyTyped(KeyEvent e) { &#xa;        if (moneyAmountBox.getText().length() &gt;= 4 ) // limit textfield to 3 characters&#xa;            e.consume(); &#xa;    }  &#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="moneyAmountBox.setVisible(false);&#xa;moneyAmountBox.addKeyListener(new KeyAdapter() {&#xa;    public void keyTyped(KeyEvent e) { &#xa;        if (moneyAmountBox.getText().length() &gt;= 4 ) // limit textfield to 3 characters&#xa;            e.consume(); &#xa;    }  &#xa;});&#xa;&#xa;moneyAmountBox.addKeyListener(new KeyAdapter() {&#xa;   public void keyTyped(KeyEvent e) {&#xa;      char c = e.getKeyChar();&#xa;      if ( ((c &lt; &apos;0&apos;) || (c &gt; &apos;9&apos;)) &amp;&amp; (c != KeyEvent.VK_BACK_SPACE) &amp;&amp; (c!= KeyEvent.VK_PERIOD)) {&#xa;e.consume();&#xa;}      &#xa;&#xa;      }&#xa;   });"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -289,6 +295,7 @@
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Talk to Royal Guard"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="talkGuardButtonActionPerformed"/>
@@ -321,7 +328,11 @@
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Employment?"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="employButtonActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="employButton.setVisible(false);"/>
           </AuxValues>
@@ -337,7 +348,11 @@
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="How&apos;s Poverty?"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="povertyButtonActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="povertyButton.setVisible(false);"/>
           </AuxValues>
@@ -353,7 +368,11 @@
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="How&apos;s Crime?"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crimeButtonActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="crimeButton.setVisible(false);"/>
           </AuxValues>
@@ -369,6 +388,7 @@
               <Image iconType="3" name="/kingdom/images/buttons/small.arrow.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/kingdom/images/buttons/small.arrow.hover.png"/>
             </Property>
